@@ -1,25 +1,18 @@
 import React from 'react';
+import {PlyrComponent} from 'plyr-react';
 
 import VideoUrlParser from './urlparser.js';
 
 function Video({ title,description,url }) {
     const parser = new VideoUrlParser();
-
-    const parseURL = (_url) => {
-        const supportedPlatforms = Object.keys(parser);
-
-        for(let platform of supportedPlatforms)
-            if(_url.search(platform) !== -1)
-                return parser[platform](_url);
-    }
+     let options = {...PlyrComponent.defaultProps.options};
+    options.controls = [...options.controls,'play-large'];
+    // options.settings = ['captions', 'quality', 'speed', 'loop'];
 
     return (
         <div className="video">
             <h2>{title}</h2>
-            <iframe width="420px" height="315px"
-                src={parseURL(url)} frameBorder="0" title={title}>
-
-            </iframe>
+            <PlyrComponent sources={parser.parse(url)} options={options} />
             <p>{description}</p>
         </div>
     );

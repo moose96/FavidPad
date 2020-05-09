@@ -1,19 +1,32 @@
-/** Class for change web page url to video url 
- *  Do not modify _parse method
- *  If you need add new platform, add method with platform name, which is inside web page url
-*/
 
 class VideoUrlParser {
-    _parse = (api,pattern,url) => {
-        return `${api}/${url.slice(url.lastIndexOf(pattern) + pattern.length)}`;
-    }
+    platforms = [
+        {
+            platform: 'youtube',
+            pattern: '?v='
+        },
+        {
+            platform: 'vimeo',
+            pattern: '/'
+        }
+    ];
 
-    youtube = (url) => {
-        return this._parse('https://youtube.com/embed','?v=',url)
-    }
+    _sourceObj = {
+        type: 'video',
+        sources: []
+    };
 
-    vimeo = (url) => {
-        return this._parse('https://player.vimeo.com/video','/',url)
+    parse = (url) => {
+        for(let platform of this.platforms) {
+            if(url.search(platform.platform) !== -1) {
+                const sources = {...this._sourceObj};
+                sources.sources.push({
+                    src: url.slice(url.lastIndexOf(platform.pattern) + platform.pattern.length),
+                    provider: platform.platform
+                });
+                return sources;
+            }
+        }
     }
 }
 
