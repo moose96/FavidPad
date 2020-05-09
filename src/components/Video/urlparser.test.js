@@ -26,8 +26,8 @@ test('test parse',() => {
         }
     ];
 
+    expect(parser).toBeDefined();
     data.forEach((item) => {
-        expect(parser).toBeDefined();
-        expect(parser.url(item.src)).toEqual(item.result);
+        expect(parser.parse(item.src)).toEqual(item.result);
     })
 })

@@ -11,19 +11,24 @@ class VideoUrlParser {
         }
     ];
 
-    _sourceObj = {
-        type: 'video',
-        sources: []
-    };
+    // _sourceObj = {
+    //     type: 'video',
+    //     sources: []
+    // };
 
     parse = (url) => {
         for(let platform of this.platforms) {
             if(url.search(platform.platform) !== -1) {
-                const sources = {...this._sourceObj};
+                const sources = {
+                    type: 'video',
+                    sources: []
+                };
+
                 sources.sources.push({
                     src: url.slice(url.lastIndexOf(platform.pattern) + platform.pattern.length),
                     provider: platform.platform
                 });
+
                 return sources;
             }
         }
