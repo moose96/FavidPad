@@ -9,8 +9,8 @@ Requirements:
 2. Git
 
 ```
-git clone
-cd szkolareacta_projekt
+git clone https://github.com/moose96/FavidPad.git
+cd FavidPad
 npm install
 npm start
 ```
@@ -18,7 +18,3 @@ npm start
 ## Assumptions
 
 The app shows videos, with given title, and description by custom player. For convenience, it should let users give an url from web url input, like: *https://youtube.com/watch?v=somevideo*, and convert it into right video url, for example: *https://youtube.com/embed/somevideo*.
-
-## To do
-
-* Integrate *Video* component with [Plyr.io](https://plyr.io/) library
