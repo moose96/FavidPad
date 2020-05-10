@@ -1,0 +1,12 @@
+.video-list-wrapper {
+    /* width: 25%; */
+    height: auto;
+    margin-right: 1rem;
+    box-shadow: 1px 1px 5px #aaaaaa;
+    /* border-right: 1px solid #aaaaaa; */
+}
+
+.video-list-wrapper h3 {
+    margin-top: 5px;
+    padding-left: 5px;
+}

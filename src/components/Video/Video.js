@@ -1,19 +1,22 @@
 import React from 'react';
-import {PlyrComponent} from 'plyr-react';
 
-import VideoUrlParser from './urlparser.js';
+import VideoUrlParser from '../../utility/urlparser/';
+import './Video.css';
 
-function Video({ title,description,url }) {
+function Video({ title,description,url,id, active,onClick }) {
     const parser = new VideoUrlParser();
-     let options = {...PlyrComponent.defaultProps.options};
-    options.controls = [...options.controls,'play-large'];
-    // options.settings = ['captions', 'quality', 'speed', 'loop'];
+
+    const onVideoClick = () => {
+        onClick(id);
+    }
 
     return (
-        <div className="video">
-            <h2>{title}</h2>
-            <PlyrComponent sources={parser.parse(url)} options={options} />
-            <p>{description}</p>
+        <div className={`video ${active && 'active'}`} onClick={onVideoClick}>
+            <img src={parser.parseThumb(url)} alt="thumb"/>
+            <div className="video-info">
+                <h2>{title}</h2>
+                <p>{description}</p>
+            </div>
         </div>
     );
 }

@@ -12,7 +12,8 @@ test('test parse',() => {
                     src: 'FgrDGrcgR',
                     provider: 'youtube'
                 }]
-            }
+            },
+            thumb: 'https://i3.ytimg.com/vi/FgrDGrcgR/hqdefault.jpg'
         },
         {
             src: 'https://vimeo.com/G4r54Mdgh',
@@ -22,12 +23,14 @@ test('test parse',() => {
                     src: 'G4r54Mdgh',
                     provider: 'vimeo'
                 }]
-            }
+            },
+            thumb: 'https://i.vimeocdn.com/video/G4r54Mdgh_200x150.jpg'
         }
     ];
 
     expect(parser).toBeDefined();
     data.forEach((item) => {
         expect(parser.parse(item.src)).toEqual(item.result);
+        expect(parser.parseThumb(item.src)).toEqual(item.thumb);
     })
 })

@@ -1,3 +1,25 @@
 .App {
-  text-align: center;
+  display: flex;
+  height: 100%;
+}
+
+.App .video-list-wrapper {
+  flex: 1;
+}
+
+.App .player-wrapper {
+  flex: 3;
+  margin-top: 1rem;
+}
+
+.player-wrapper .player {
+  display: flex;
+  justify-content: center;
+  /* border-bottom: 1px solid #aaaaaa; */
+  padding-bottom: 1rem;
+}
+
+.player-wrapper .plyr {
+  width: 50rem;
+  height: 28.125rem;
 }

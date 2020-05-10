@@ -1,35 +1,20 @@
-import React,{Component} from 'react';
+import React from 'react';
 
 import Video from '../Video';
+import './VideoList.css';
 
-const API_URL = '/database.json';
-
-class VideoList extends Component {
-    state = {
-        videos: []
-    };
-
-    componentDidMount() {
-        fetch(API_URL)
-        .then((res) => res.json())
-        .then((data) => {
-            this.setState({
-                videos: data
-            });
-        });
-    }
-
-    render() {
-        const { videos } = this.state;
-
-        return (
+function VideoList({ videos,currentVideo,onVideoClick}) {
+    return (
+        <div className="video-list-wrapper">
+            <h3>Filmy</h3>
             <div className="video-list">
                 {videos.map((element,index) => (
-                    <Video key={index} {...element}/>
+                    <Video key={index} active={index === currentVideo} {...element}
+                            id={index} onClick={onVideoClick}/>
                 ))}
             </div>
-        );
-    }
+        </div>
+    );
 }
 
 export default VideoList;

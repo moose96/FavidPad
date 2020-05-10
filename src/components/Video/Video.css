@@ -1,0 +1,32 @@
+.video {
+    display: flex;
+    cursor: pointer;
+    padding-right: 5px;
+    align-items: center;
+    transition: opacity .25s;
+}
+
+.video.active {
+    border-right: 5px solid var(--primary-color);
+    transition: border-right 1s;
+}
+
+.video:nth-child(2n) {
+    background-color: var(--primary-color-bg);
+}
+
+.video:hover {
+    opacity: .75;
+    transition: opacity .25s;
+}
+
+.video img {
+    height: 5rem;
+    padding: 5% 5% 5% 5%;
+    flex: 1
+}
+
+.video .video-info {
+    text-align: left;
+    flex: 4
+}
