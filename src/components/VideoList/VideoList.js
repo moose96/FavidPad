@@ -9,7 +9,7 @@ function VideoList({ videos,currentVideo,onVideoClick}) {
             <h3>Filmy</h3>
             <div className="video-list">
                 {videos.map((element,index) => (
-                    <Video key={index} active={index === currentVideo} {...element}
+                    <Video key={`video-${index}`} active={index === currentVideo} {...element}
                             id={index} onClick={onVideoClick}/>
                 ))}
             </div>
