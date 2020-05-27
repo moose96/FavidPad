@@ -17,4 +17,8 @@ function VideoList({ videos,currentVideo,onVideoClick }) {
     );
 }
 
+VideoList.defaultProps = {
+    currentVideo: 0
+}
+
 export default VideoList;
