@@ -40,17 +40,12 @@ class App extends Component {
     });
   }
 
-  // isCurrentVideoNotNull = () => {
-  //   if(this.state.currentVideo)
-  // }
-
   render () {
-    const { videos, currentVideo} = this.state;
+    const { videos, currentVideo } = this.state;
 
     return (
       <div className="App">
         <VideoList videos={videos} currentVideo={currentVideo} onVideoClick={this.handleVideoClick}/>
-        {/*<PlyrComponent sources={this.parser.parse(currentVideo.url)} /> */}
         <div className="player-wrapper">
           <div className="player">
             <Player source={this.parser.parse(videos[currentVideo].url)} />

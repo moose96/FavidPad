@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import Plyr from 'plyr';
 import 'plyr/dist/plyr.css';
+
 import './Player.css';
 
 class Player extends Component {

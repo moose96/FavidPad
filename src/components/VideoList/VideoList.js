@@ -3,7 +3,7 @@ import React from 'react';
 import Video from '../Video';
 import './VideoList.css';
 
-function VideoList({ videos,currentVideo,onVideoClick}) {
+function VideoList({ videos,currentVideo,onVideoClick }) {
     return (
         <div className="video-list-wrapper">
             <h3>Filmy</h3>
