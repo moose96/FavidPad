@@ -6,64 +6,48 @@ import {
   Link
 } from 'react-router-dom';
 
-import Home from './pages/Home';
+// import Home from './pages/Home';
 import About from './pages/About';
-
-// import VideoList from './components/VideoList';
+import Page404 from './pages/Page404';
 import './App.css';
-import VideoUrlParser from './utility/urlparser/';
-// import Player from './components/Player/';
+import Header from './components/Header/Header';
+import VideoList from './components/VideoList';
+import VideoView from './pages/VideoView/VideoView';
 
-// const API_URL = '/database.json';
+const API_URL = '/database.json';
 
 class App extends Component {
-  constructor(props) {
-    super(props);
 
-    this.parser = new VideoUrlParser();
+  state = {
+    videos: [{
+      url: ''
+    }],
+    loading: true
+  };
+
+  componentDidMount() {
+      fetch(API_URL)
+      .then((res) => res.json())
+      .then((data) => {
+          this.setState({
+              videos: data
+          },() => this.setState({ loading: false }));
+      });
   }
 
-  // state = {
-  //   videos: [{
-  //     url: ''
-  //   }],
-  //   currentVideo: 0
-  // };
-
-  // componentDidMount() {
-  //     fetch(API_URL)
-  //     .then((res) => res.json())
-  //     .then((data) => {
-  //         this.setState({
-  //             videos: data
-  //         });
-  //     });
-  // }
-
-  // handleVideoClick = (id) => {
-  //   this.setState({
-  //     currentVideo: id
-  //   });
-  // }
-
   render () {
-    // const { videos, currentVideo } = this.state;
+    const { videos, loading } = this.state;
 
     return (
       <Router>
         <div className="App">
+          <Header />
           <Switch>
+            <Route path="/video/:id"><VideoView videos={videos} loadingData={loading}/></Route>
             <Route path="/about"><About /></Route>
-            <Route path="/"><Home /></Route>
+            <Route exact path="/"><VideoList videos={videos} loadingData={loading}/></Route>
+            <Route path="*"><Page404 /></Route>
           </Switch>
-          {/*<VideoList videos={videos} currentVideo={currentVideo} onVideoClick={this.handleVideoClick}/>
-          <div className="player-wrapper">
-            <div className="player">
-              <Player source={this.parser.parse(videos[currentVideo].url)} />
-            </div>
-            <h2>{videos[currentVideo].title}</h2>
-            <p>{videos[currentVideo].description}</p>
-          </div> */}
         </div>
       </Router>
     );

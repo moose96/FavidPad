@@ -14,7 +14,7 @@ function Home() {
     },[]);
 
     return(
-        <VideoList videos={videos} onVideoClick={() => {}}/>
+        <VideoList videos={videos}/>
     );
 }
 

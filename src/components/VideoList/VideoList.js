@@ -3,14 +3,13 @@ import React from 'react';
 import Video from '../Video';
 import './VideoList.css';
 
-function VideoList({ videos,currentVideo,onVideoClick }) {
+function VideoList({ videos, currentVideo }) {
     return (
         <div className="video-list-wrapper">
             <h3>Filmy</h3>
             <div className="video-list">
-                {videos.map((element,index) => (
-                    <Video key={`video-${index}`} active={index === currentVideo} {...element}
-                            id={index} onClick={onVideoClick}/>
+                {videos.map((element) => (
+                    <Video key={`video-${element.id}`} active={element.id === currentVideo} {...element} />
                 ))}
             </div>
         </div>
