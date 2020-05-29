@@ -9,10 +9,11 @@ import {
 // import Home from './pages/Home';
 import About from './pages/About';
 import Page404 from './pages/Page404';
-import './App.css';
 import Header from './components/Header/Header';
 import VideoList from './components/VideoList';
 import VideoView from './pages/VideoView/VideoView';
+import VideoCreateForm from './components/VideoCreateForm/VideoCreateForm';
+import './App.css';
 
 const API_URL = '/database.json';
 
@@ -43,7 +44,8 @@ class App extends Component {
         <div className="App">
           <Header />
           <Switch>
-            <Route path="/video/:id"><VideoView videos={videos} loadingData={loading}/></Route>
+            <Route exact path="/video/create"><VideoCreateForm title="test"/></Route>
+            <Route exact path="/video/:id"><VideoView videos={videos} loadingData={loading}/></Route>
             <Route path="/about"><About /></Route>
             <Route exact path="/"><VideoList videos={videos} loadingData={loading}/></Route>
             <Route path="*"><Page404 /></Route>
