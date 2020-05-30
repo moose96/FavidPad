@@ -44,10 +44,11 @@ class App extends Component {
         <div className="App">
           <Header />
           <Switch>
-            <Route exact path="/video/create"><VideoCreateForm title="test"/></Route>
-            <Route exact path="/video/:id"><VideoView videos={videos} loadingData={loading}/></Route>
+            <Route exact path="/video/create" component={VideoCreateForm} />
+            <Route exact path="/video/:id/update" component={VideoCreateForm} />
+            <Route path="/video/:id" component={VideoView} />
             <Route path="/about"><About /></Route>
-            <Route exact path="/"><VideoList videos={videos} loadingData={loading}/></Route>
+            <Route exact path="/"><VideoList /></Route>
             <Route path="*"><Page404 /></Route>
           </Switch>
         </div>

@@ -12,12 +12,13 @@ class FakeAPIServer {
                     if (video) {
                         resolve({ type: 'video' , data: video });
                     } else {
-                        reject();
+                        resolve({ type: 'error', data: 'not found' });
                     }
                 } else {
                     resolve({ type: 'list', data });
                 }
-            });
+            })
+            .catch(err => reject(err));
         });
     }
 }

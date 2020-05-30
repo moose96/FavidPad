@@ -1,10 +1,8 @@
-import React,{Fragment} from 'react';
-import {
-    useParams
-} from 'react-router-dom';
+import React,{ Component, Fragment } from 'react';
 
 import Player from '../../components/Player';
 import VideoUrlParser from '../../utility/urlparser/';
+import FakeAPIServer from '../../utility/FakeAPIServer';
 
 const IsVideo = ({ video }) => (
     <Fragment>
@@ -18,31 +16,53 @@ const IsVideo = ({ video }) => (
 
 const NoVideo = ({ text }) => <h2>{text}</h2>;
 
-function VideoView ({ videos, loadingData }) {
-    const { id } = useParams();
-    const parser = new VideoUrlParser();
+class VideoView extends Component {
+    constructor(props) {
+        super(props);
 
-    let _component;
-
-    if (!loadingData) {
-        let video = videos.find( video => video.id === id );
-
-        if (video) {
-            video.url = parser.parse(video.url);
-            _component = <IsVideo video={video} />;
-        } else {
-            _component = <NoVideo text="Nie znaleziono filmu" />
-        }
-
-    } else {
-        _component = <NoVideo text="Loading..."/>;
+        this.fakeApi = new FakeAPIServer();
+        this.parser = new VideoUrlParser();
+        this._component = null;
     }
 
-    return (
-        <div className="player-wrapper">
-            {_component}
-        </div>
-    );
+    state = {
+        video: null,
+        loading: true
+    }
+
+    componentDidMount() {
+        this.fakeApi.get({ id: this.props.match.params.id })
+        .then(data => {
+            let _video = null;
+
+            if (data.type !== 'error') {
+                _video = {...data.data};
+                _video.url = this.parser.parse(_video.url);
+            }
+
+            this.setState({
+                video: _video
+            },() => this.setState({ loading: false }));
+        })
+    }
+
+    render () {
+        if (!this.state.loading) {
+            if (this.state.video) {
+                this._component = <IsVideo video={this.state.video} />
+            } else {
+                this._component = <NoVideo text="Nie znaleziono filmu." />
+            }
+        } else {
+            this._component = <NoVideo text="Loading..." />
+        }
+
+        return (
+            <div className="player-wrapper">
+                {this._component}
+            </div>
+        );
+    }
 }
 
 export default VideoView;
