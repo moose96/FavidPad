@@ -2,12 +2,11 @@ import React,{ Component, Fragment } from 'react';
 
 import Player from '../../components/Player';
 import VideoUrlParser from '../../utility/urlparser/';
-import FakeAPIServer from '../../utility/FakeAPIServer';
 
 const IsVideo = ({ video }) => (
     <Fragment>
         <div className="player">
-            <Player source={video.url} />
+            <Player source={video.video_url} />
         </div>
         <h2>{video.title}</h2>
         <p>{video.description}</p>
@@ -20,7 +19,6 @@ class VideoView extends Component {
     constructor(props) {
         super(props);
 
-        this.fakeApi = new FakeAPIServer();
         this.parser = new VideoUrlParser();
         this._component = null;
     }
@@ -30,20 +28,27 @@ class VideoView extends Component {
         loading: true
     }
 
-    componentDidMount() {
-        this.fakeApi.get({ id: this.props.match.params.id })
-        .then(data => {
-            let _video = null;
-
-            if (data.type !== 'error') {
-                _video = {...data.data};
-                _video.url = this.parser.parse(_video.url);
+    componentDidMount() { // potwór :(
+        fetch(`http://localhost:3000/v1/movies/${this.props.match.params.id}`)
+        .then(response => {
+            if(response.status === 200) {
+                return response.json();
+            } else {
+                throw Error("not found");
             }
+        })
+        .then(data => {
+            let _video = {...data};
+            _video.video_url = this.parser.parse(data.video_url);
 
             this.setState({
                 video: _video
             },() => this.setState({ loading: false }));
         })
+        .catch(err => {
+            console.log(err);
+            this.setState({ loading: false });
+        });
     }
 
     render () {

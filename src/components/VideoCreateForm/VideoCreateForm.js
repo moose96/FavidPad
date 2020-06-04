@@ -1,14 +1,6 @@
 import React,{Component} from 'react';
 
-import FakeAPIServer from '../../utility/FakeAPIServer';
-
 class VideoCreateForm extends Component {
-    constructor(props) {
-        super(props);
-
-        this.fakeApi = new FakeAPIServer();
-    }
-
     state = {
         title: '',
         description: '',
@@ -22,21 +14,59 @@ class VideoCreateForm extends Component {
         });
     }
 
+    handleSubmit = (event) => {
+        event.preventDefault();
+        let method = 'POST';
+
+        if (this.props.match.params.id) {
+            method = 'PATCH';
+        }
+
+        fetch('http://localhost:3000/v1/movies',{
+            method,
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                title: this.state.title,
+                description: this.state.description,
+                video_url: this.state.videoUrl
+            })
+        })
+        .then(response => {
+            if (response.status === 201) {
+                console.log('ok');
+            } else if (response.status === 400) {
+                throw Error('bad request');
+            } else if (response.status === 404) {
+                throw Error('not found');
+            }
+        })
+        .catch(err => console.log(err));
+    }
+
     componentDidMount() {
         if (this.props.match.params.id) {
-            this.fakeApi.get({ id: this.props.match.params.id })
-            .then(data => {
-                if (data.type === 'error') {
-                    this.setState({ noVideo: true });
+            fetch(`http://localhost:3000/v1/movies/${this.props.match.params.id}`)
+            .then(response => {
+                if(response.status === 200) {
+                    return response.json();
                 } else {
-                    this.setState({
-                        title: data.data.title,
-                        description: data.data.description,
-                        videoUrl: data.data.url,
-                        noVideo: false
-                    });
+                    throw Error('not found');
                 }
-            });
+            })
+            .then(data => {
+                this.setState({
+                    title: data.title,
+                    description: data.description,
+                    videoUrl: data.video_url,
+                    noVideo: false
+                });
+            })
+            .catch(err => {
+                console.log(err);
+                this.setState({ noVideo: true });
+            })
         }
     }
 
@@ -51,7 +81,7 @@ class VideoCreateForm extends Component {
             );
         } else {
             return(
-                <form>
+                <form onSubmit={this.handleSubmit}>
                     <input type="text" name="title" value={title} onChange={this.handleInputChange} />
                     <input type="text" name="description" value={description} onChange={this.handleInputChange} />
                     <input type="text" name="videoUrl" value={videoUrl} onChange={this.handleInputChange} />

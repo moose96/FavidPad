@@ -1,16 +1,15 @@
 import React,{ useState, useEffect} from 'react';
 
 import Video from '../Video';
-import FakeAPIServer from '../../utility/FakeAPIServer';
 import './VideoList.css';
 
 function VideoList(/*{ videos, currentVideo }*/) {
-    const [videos, setVideos] = useState([{ url: ''}]);
-    const fakeApi = new FakeAPIServer();
+    const [videos, setVideos] = useState([{ video_url: ''}]);
 
     useEffect(() => {
-        fakeApi.get()
-        .then(data => {console.log(data);setVideos(data.data);});
+        fetch('http://localhost:3000/v1/movies')
+        .then(response => response.json())
+        .then(data => setVideos(data));
     },[]);
 
     return (
