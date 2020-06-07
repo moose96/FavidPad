@@ -1,9 +1,20 @@
 .video-view {
+  display: flex;
+  padding-left: 1rem;
+  padding-right: 1rem;
+
     .video-view__player {
-        height: 75%;
+        flex: 2;
     }
 
     .video-view__content {
-        height: 25%;
+        flex: 1;
+        padding-left: 1rem;
+        padding-right: 1rem;
+
+        h2 {
+          padding: 0 0 0 0;
+          border-bottom: 1px solid rgb(180,180,180);
+        }
     }
 }
