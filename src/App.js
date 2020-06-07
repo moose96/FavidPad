@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
 import {
   BrowserRouter as Router,
-  Switch,
-  Route,
-  Link
+  Route
 } from 'react-router-dom';
 
-// import Home from './pages/Home';
+ import Home from './pages/Home';
+import Content from './components/Content';
 import About from './pages/About';
 import Page404 from './pages/Page404';
 import Header from './components/Header/Header';
@@ -18,39 +17,19 @@ import './App.css';
 const API_URL = '/database.json';
 
 class App extends Component {
-
-  state = {
-    videos: [{
-      url: ''
-    }],
-    loading: true
-  };
-
-  componentDidMount() {
-      fetch(API_URL)
-      .then((res) => res.json())
-      .then((data) => {
-          this.setState({
-              videos: data
-          },() => this.setState({ loading: false }));
-      });
-  }
-
   render () {
-    const { videos, loading } = this.state;
-
     return (
       <Router>
         <div className="App">
           <Header />
-          <Switch>
+          <Content>
             <Route exact path="/video/create" component={VideoCreateForm} />
             <Route exact path="/video/:id/update" component={VideoCreateForm} />
             <Route path="/video/:id" component={VideoView} />
             <Route path="/about"><About /></Route>
-            <Route exact path="/"><VideoList /></Route>
+            <Route exact path="/"><Home /></Route>
             <Route path="*"><Page404 /></Route>
-          </Switch>
+          </Content>
         </div>
       </Router>
     );

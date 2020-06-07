@@ -1,20 +1,17 @@
-import React,{useState,useEffect} from 'react';
+import React, { Fragment } from 'react';
+import { Link } from 'react-router-dom';
 
 import VideoList from '../../components/VideoList';
-
-const API_URL = '/database.json';
+import '../../styles/iconmoon/style.scss';
 
 function Home() {
-    const [videos, setVideos] = useState([{url: ''}]);
-
-    useEffect(() => {
-        fetch(API_URL)
-        .then((res) => res.json())
-        .then((data) => setVideos(data));
-    },[]);
-
     return(
-        <VideoList videos={videos}/>
+        <Fragment>
+            <div className="home__toolbar">
+                <Link to="/video/create"><span className="icon icon-plus"></span> Dodaj</Link>
+            </div>
+            <VideoList />
+        </Fragment>
     );
 }
 

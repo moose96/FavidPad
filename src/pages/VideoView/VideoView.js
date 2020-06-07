@@ -2,14 +2,17 @@ import React,{ Component, Fragment } from 'react';
 
 import Player from '../../components/Player';
 import VideoUrlParser from '../../utility/urlparser/';
+import './VideoView.scss';
 
 const IsVideo = ({ video }) => (
     <Fragment>
-        <div className="player">
+        <div className="video-view__player">
             <Player source={video.video_url} />
         </div>
-        <h2>{video.title}</h2>
-        <p>{video.description}</p>
+        <div className="video-view__content">
+            <h2>{video.title}</h2>
+            <p>{video.description}</p>
+        </div>
     </Fragment>
 )
 
@@ -63,7 +66,7 @@ class VideoView extends Component {
         }
 
         return (
-            <div className="player-wrapper">
+            <div className="video-view">
                 {this._component}
             </div>
         );
