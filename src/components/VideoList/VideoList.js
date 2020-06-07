@@ -6,6 +6,7 @@ import './VideoList.scss';
 function VideoList(/*{ videos, currentVideo }*/) {
   const [videos, setVideos] = useState([{ video_url: ''}]);
   const [currentVideo, setCurrentVideo] = useState(0);
+  const [lastTouchXValue, setLastTouchXValue] = useState(0);
 
   useEffect(() => {
     fetch('http://localhost:3000/v1/movies')
@@ -18,8 +19,29 @@ function VideoList(/*{ videos, currentVideo }*/) {
     setCurrentVideo(index);
   }
 
+  const calculateNewVideoIndex = (delta) => {
+    const newIndex = delta > 0 ? currentVideo + 1 : currentVideo - 1;
+
+    if (newIndex >= 0 && newIndex < videos.length) {
+      setCurrentVideo(newIndex);
+    } else if (newIndex > 0) {
+      setCurrentVideo(videos.length - 1);
+    } else if (newIndex < 0) {
+      setCurrentVideo(0);
+    }
+  }
+
+  const handleMouseWheel = (event) => {
+    calculateNewVideoIndex(Math.floor(event.deltaY) / 2);
+  }
+
+  const handleTouchEvent = (event) => {
+    calculateNewVideoIndex(lastTouchXValue - event.changedTouches[0].clientX);
+    setLastTouchXValue(event.changedTouches[0].clientX);
+  }
+
   return (
-    <div className="video-list">
+    <div className="video-list" onWheel={handleMouseWheel} onTouchMove={handleTouchEvent}>
       {videos.map((element, index, table) => {
         let translateX, scale, style;
 
