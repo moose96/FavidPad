@@ -1,8 +1,10 @@
 import React,{ Component, Fragment } from 'react';
 
+import { API_URL } from '../../global';
 import Player from '../../components/Player';
 import VideoUrlParser from '../../utility/urlparser/';
 import './VideoView.scss';
+import VideoList from '../../components/VideoList';
 
 const IsVideo = ({ video }) => (
     <Fragment>
@@ -12,6 +14,8 @@ const IsVideo = ({ video }) => (
         <div className="video-view__content">
             <h2>{video.title}</h2>
             <p>{video.description}</p>
+            <h3>Kolejne filmy: </h3>
+            <VideoList viewType="listView" />
         </div>
     </Fragment>
 )
@@ -32,7 +36,7 @@ class VideoView extends Component {
     }
 
     componentDidMount() { // potwór :(
-        fetch(`http://localhost:3000/v1/movies/${this.props.match.params.id}`)
+        fetch(`${API_URL}/movies/${this.props.match.params.id}`)
         .then(response => {
             if(response.status === 200) {
                 return response.json();

@@ -1,5 +1,6 @@
 import React,{ Component } from 'react';
 
+import { API_URL } from '../../global';
 import { Text } from '../Form';
 import './VideoCreateForm.scss';
 import '../../styles/iconmoon/style.scss';
@@ -32,6 +33,7 @@ class VideoCreateForm extends Component {
   }
 
   handleSubmit = (event) => {
+    console.log(event);
     event.preventDefault();
     let method = 'POST';
 
@@ -39,7 +41,7 @@ class VideoCreateForm extends Component {
       method = 'PATCH';
     }
 
-    fetch('http://localhost:3000/v1/movies',{
+    fetch(`${API_URL}/v1/movies`,{
       method,
       headers: {
         'Content-Type': 'application/json'
@@ -52,7 +54,7 @@ class VideoCreateForm extends Component {
     })
     .then(response => {
       if (response.status === 201) {
-        console.log('ok');
+        this.props.history.push('/');
       } else if (response.status === 400) {
         throw Error('bad request');
       } else if (response.status === 404) {
@@ -64,7 +66,7 @@ class VideoCreateForm extends Component {
 
   componentDidMount() {
     if (this.props.match.params.id) {
-      fetch(`http://localhost:3000/v1/movies/${this.props.match.params.id}`)
+      fetch(`${API_URL}/movies/${this.props.match.params.id}`)
       .then(response => {
         if(response.status === 200) {
             return response.json();
@@ -102,13 +104,13 @@ class VideoCreateForm extends Component {
             <div className="video-create-form__vertical">
               <img className="video-create-form__thumbnail" src={thumbnail} alt="thumb" />
               <div className="video-create-form__horizontal">
-                <Text name="title" label="Tytuł filmu" value={title} onChange={this.handleInputChange} />
+                <Text name="title" label="Tytuł filmu" value={title} onChange={this.handleInputChange} required/>
                 <Text name="videoUrl" label="Adres URL" value={videoUrl}
-                onChange={this.handleInputChange} onBlur={this.handleBlurVideoUrl}/>
+                onChange={this.handleInputChange} onBlur={this.handleBlurVideoUrl} required/>
               </div>
             </div>
             <div className="video-create-form__fluid">
-              <Text multiline name="description" label="Opis" value={description} onChange={this.handleInputChange} />
+              <Text multiline name="description" label="Opis" value={description} onChange={this.handleInputChange} required/>
             </div>
               <input type="submit" value="Dodaj" />
           </form>

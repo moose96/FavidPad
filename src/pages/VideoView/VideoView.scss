@@ -4,17 +4,18 @@
   padding-right: 1rem;
 
     .video-view__player {
-        flex: 2;
+      flex: 2;
+      height: 100%;
     }
 
     .video-view__content {
-        flex: 1;
-        padding-left: 1rem;
-        padding-right: 1rem;
+      flex: 1;
+      padding-left: 1rem;
+      padding-right: 1rem;
 
-        h2 {
-          padding: 0 0 0 0;
-          border-bottom: 1px solid rgb(180,180,180);
-        }
+      h2 {
+        padding: 0 0 0 0;
+        border-bottom: 1px solid rgb(180,180,180);
+      }
     }
 }

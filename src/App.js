@@ -9,12 +9,9 @@ import Content from './components/Content';
 import About from './pages/About';
 import Page404 from './pages/Page404';
 import Header from './components/Header/Header';
-import VideoList from './components/VideoList';
 import VideoView from './pages/VideoView/VideoView';
 import VideoCreateForm from './components/VideoCreateForm/VideoCreateForm';
 import './App.css';
-
-const API_URL = '/database.json';
 
 class App extends Component {
   render () {
