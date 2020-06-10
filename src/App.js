@@ -4,13 +4,13 @@ import {
   Route
 } from 'react-router-dom';
 
- import Home from './pages/Home';
-import Content from './components/Content';
+import Header from './components/template/Header';
+import Content from './components/template/Content';
+import Home from './pages/Home';
 import About from './pages/About';
 import Page404 from './pages/Page404';
-import Header from './components/Header/Header';
-import VideoView from './pages/VideoView/VideoView';
-import VideoCreateForm from './components/VideoCreateForm/VideoCreateForm';
+import VideoView from './pages/VideoView';
+import VideoCreateForm from './components/forms/VideoCreateForm';
 import './App.css';
 
 class App extends Component {

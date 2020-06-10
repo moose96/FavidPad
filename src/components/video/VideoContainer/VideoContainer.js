@@ -2,10 +2,10 @@ import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import classnames from 'classnames';
 
-import { API_URL } from '../../global';
+import { API_URL } from '../../../global';
 import Video from '../Video/Video';
 import './VideoContainer.scss';
-import DeleteVideoForm from '../Form/DeleteVideoForm';
+import DeleteVideoForm from '../../forms/DeleteVideoForm';
 
 const Loading = () => <div className="loading">Loading...</div>;
 

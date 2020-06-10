@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-import VideoContainer from '../VideoContainer';
+import VideoContainer from '../../video/VideoContainer';
 
 function CarouselView({ videos }) {
   const [currentVideo, setCurrentVideo] = useState(0);

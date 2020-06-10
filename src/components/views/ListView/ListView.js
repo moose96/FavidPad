@@ -1,7 +1,7 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
 
-import VideoContainer from '../VideoContainer';
+import VideoContainer from '../../video/VideoContainer';
 
 function ListView({ videos }) {
   const history = useHistory();

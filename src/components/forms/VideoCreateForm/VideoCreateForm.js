@@ -1,11 +1,11 @@
 import React,{ Component } from 'react';
 
-import { API_URL } from '../../global';
-import { Text } from '../Form';
+import { API_URL } from '../../../global';
+import { Text } from '..';
 import './VideoCreateForm.scss';
-import '../../styles/iconmoon/style.scss';
-import VideoUrlParser from '../../utility/urlparser';
-import placeholder from '../../images/019-play.png';
+import '../../../styles/iconmoon/style.scss';
+import VideoUrlParser from '../../../utility/urlparser';
+import placeholder from '../../../images/019-play.png';
 
 class VideoCreateForm extends Component {
   parser = new VideoUrlParser();

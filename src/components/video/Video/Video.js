@@ -1,8 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import VideoUrlParser from '../../utility/urlparser/';
-import '../../styles/iconmoon/style.scss';
+import VideoUrlParser from '../../../utility/urlparser/';
+import '../../../styles/iconmoon/style.scss';
 import './Video.scss';
 
 function Video({ title, description, video_url, id, onClick, onDelete }) {

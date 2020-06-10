@@ -2,10 +2,10 @@ import React,{ Fragment, useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 
 import { API_URL } from '../../global';
-import Player from '../../components/Player';
+import Player from '../../components/video/Player';
 import VideoUrlParser from '../../utility/urlparser/';
 import './VideoView.scss';
-import VideoList from '../../components/VideoList';
+import VideoList from '../../components/video/VideoList';
 
 const IsVideo = ({ video }) => (
     <Fragment>

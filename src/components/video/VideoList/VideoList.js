@@ -1,10 +1,10 @@
 import React,{ useState, useEffect, Fragment } from 'react';
 
 // import VideoContainer from '../VideoContainer';
-import { API_URL } from '../../global';
+import { API_URL } from '../../../global';
 import './VideoList.scss';
-import CarouselView from '../CarouselView/';
-import ListView from '../ListView';
+import CarouselView from '../../views/CarouselView';
+import ListView from '../../views/ListView';
 
 function VideoList({ viewType }) {
   const [videos, setVideos] = useState([{ video_url: ''}]);

@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react';
 import { Link } from 'react-router-dom';
 
-import VideoList from '../../components/VideoList';
+import VideoList from '../../components/video/VideoList';
 import '../../styles/iconmoon/style.scss';
 
 function Home() {
