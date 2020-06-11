@@ -2,7 +2,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 40%;
+  width: 25%;
   margin-left: auto;
   margin-right: auto;
 
@@ -10,21 +10,39 @@
     width: 100%;
   }
 
-  .video-create-form__thumbnail {
+  &__thumbnail {
     height: 6rem;
     margin-right: 1rem;
   }
 
-  .video-create-form__horizontal {
+  &__horizontal {
     display: flex;
     flex-direction: column;
     width: 75%;
   }
 
-  .video-create-form__vertical {
+  &__vertical {
     display: flex;
     align-items: center;
     justify-content: space-between;
+  }
+
+  &__buttons {
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  fieldset {
+    width: 100%;
+    border: 3px solid black;
+
+    legend {
+      text-align: center;
+    }
+  }
+
+  textarea {
+    height: 5rem;
   }
 }
 

@@ -1,5 +1,7 @@
 import React from 'react';
 
+import './Text.scss';
+
 function Text(props) {
   const lineText = <input type="text" {...props} />;
   const multiLineText = <textarea {...props} />;

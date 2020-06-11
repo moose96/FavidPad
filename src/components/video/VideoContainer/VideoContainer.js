@@ -5,11 +5,11 @@ import classnames from 'classnames';
 import { API_URL } from '../../../global';
 import Video from '../Video/Video';
 import './VideoContainer.scss';
-import DeleteVideoForm from '../../forms/DeleteVideoForm';
+// import DeleteVideoForm from '../../forms/DeleteVideoForm';
+import MessageBox from '../../forms/MessageBox';
+import Loading from '../../views/Loading';
 
-const Loading = () => <div className="loading">Loading...</div>;
-
-function VideoContainer({ active, style, video, onClick }) {
+function VideoContainer({ className, active, allowClick, style, video, onClick }) {
   const [frame, setFrame] = useState(0);
   let history = useHistory();
 
@@ -22,7 +22,7 @@ function VideoContainer({ active, style, video, onClick }) {
   },[video]);
 
   const handleClick = () => {
-    if (active) {
+    if (allowClick) {
       history.push(`/video/${video.id}`);
     } else {
       onClick(video.id);
@@ -51,7 +51,7 @@ function VideoContainer({ active, style, video, onClick }) {
     onClick(video.id);
   }
 
-  const classes = classnames({
+  const classes = classnames(className,{
     'video-container': true,
     active
   });
@@ -59,7 +59,12 @@ function VideoContainer({ active, style, video, onClick }) {
   const children = [
     <Loading />,
     <Video {...video} active={active} onClick={handleClick} onDelete={handleDeleteVideoClick} />,
-    <DeleteVideoForm onReject={() => setFrame(1)} onSubmit={handleDeleteVideo} />
+    <MessageBox className="delete-video-message-box"
+      type="yes-no"
+      onReject={() => setFrame(1)}
+      onSubmit={handleDeleteVideo} >
+      Czy na pewno chcesz usunąć to video?
+    </MessageBox>
   ];
 
   return (
@@ -70,7 +75,9 @@ function VideoContainer({ active, style, video, onClick }) {
 }
 
 VideoContainer.defaultProps = {
-  video: []
+  video: [],
+  active: false,
+  allowClick: true
 }
 
 export default VideoContainer;

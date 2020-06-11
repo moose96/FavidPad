@@ -1,0 +1,13 @@
+@keyframes rotate {
+  from {transform: rotateZ(0);}
+  to {transform: rotateZ(360deg);}
+}
+
+.loading {
+  text-align: center;
+  &__spinner {
+    animation: rotate 1s infinite;
+    font-size: 8rem;
+    color: #aaaaaa
+  }
+}

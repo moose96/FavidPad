@@ -6,6 +6,8 @@ import Player from '../../components/video/Player';
 import VideoUrlParser from '../../utility/urlparser/';
 import './VideoView.scss';
 import VideoList from '../../components/video/VideoList';
+import Loading from '../../components/views/Loading';
+import NotFound from '../../components/views/NotFound';
 
 const IsVideo = ({ video }) => (
     <Fragment>
@@ -21,11 +23,9 @@ const IsVideo = ({ video }) => (
     </Fragment>
 )
 
-const NoVideo = ({ text }) => <h2>{text}</h2>;
-
 function VideoView(props) {
   const [video, setVideo] = useState(null);
-  const [loading, setLoading] = useState(true);
+  const [notFound, setNotFound] = useState(false);
 
   const parser = new VideoUrlParser();
   let _component = null;
@@ -48,22 +48,29 @@ function VideoView(props) {
     })
     .catch(err => {
       console.log(err);
-      setLoading(false);
+      setNotFound(true);
     });
   },[id]);
 
-  useEffect(() => {
-    setLoading(false);
-  },[video]);
-
-  if (!loading) {
+  if (!notFound) {
     if (video) {
       _component = <IsVideo video={video} />
     } else {
-      _component = <NoVideo text="Nie znaleziono filmu." />
+      _component = (
+        <div className="video-view__loading-placeholder">
+          <Loading />
+        </div>
+      )
     }
   } else {
-    _component = <NoVideo text="Loading..." />
+    _component = (
+      <Fragment>
+        <div className="video-view__loading-placeholder">
+          <NotFound message="Nie znaleziono filmu" />
+        </div>
+        <VideoList viewType="listView" />
+      </Fragment>
+    )
   }
 
   return (

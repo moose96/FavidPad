@@ -1,9 +1,11 @@
 import React from 'react';
 
+import NotFound from '../../components/views/NotFound';
+
 function Page404() {
     return (
         <div>
-            <h2>404 not found</h2>
+            <NotFound message="Podana strona nie została odnaleziona" />
         </div>
     );
 }

@@ -1,0 +1,15 @@
+.message-box {
+  &__message {
+    text-align: center;
+  }
+
+  &__buttons {
+    display: flex;
+    justify-content: center;
+
+    input[type="submit"],
+    input[type="reset"] {
+      margin-right: 1rem;
+    }
+  }
+}

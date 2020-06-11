@@ -1,25 +1,26 @@
-import React, { useState } from 'react';
+import React, { useState, cloneElement, Fragment } from 'react';
 
-import VideoContainer from '../../video/VideoContainer';
+import './CarouselView.scss';
 
-function CarouselView({ videos }) {
-  const [currentVideo, setCurrentVideo] = useState(0);
+function CarouselView({ children }) {
+  const [currentChild, setCurrentChild] = useState(0);
   const [lastTouchXValue, setLastTouchXValue] = useState(0);
 
   const handleVideoClick = (id) => {
-    let index = videos.findIndex((element) => element.id === id);
-    setCurrentVideo(index);
+    console.log(children);
+    let index = children.findIndex((element) => element.props.video.id === id);
+    setCurrentChild(index);
   }
 
   const calculateNewVideoIndex = (delta) => {
-    const newIndex = delta > 0 ? currentVideo + 1 : currentVideo - 1;
+    const newIndex = delta > 0 ? currentChild + 1 : currentChild - 1;
 
-    if (newIndex >= 0 && newIndex < videos.length) {
-      setCurrentVideo(newIndex);
+    if (newIndex >= 0 && newIndex < children.length) {
+      setCurrentChild(newIndex);
     } else if (newIndex > 0) {
-      setCurrentVideo(videos.length - 1);
+      setCurrentChild(children.length - 1);
     } else if (newIndex < 0) {
-      setCurrentVideo(0);
+      setCurrentChild(0);
     }
   }
 
@@ -33,13 +34,13 @@ function CarouselView({ videos }) {
   }
 
   return (
-    <div className="video-list" onWheel={handleMouseWheel} onTouchMove={handleTouchEvent}>
-      {videos.map((element, index, table) => {
+    <div className="carousel-view" onWheel={handleMouseWheel} onTouchMove={handleTouchEvent}>
+      {children.map((element, index, table) => {
         let translateX, scale, style;
 
-        if (index !== currentVideo) {
-          translateX = Math.cbrt(index - currentVideo) * 75;
-          scale = 0.9 ** Math.abs(index - currentVideo);
+        if (index !== currentChild) {
+          translateX = Math.cbrt(index - currentChild) * 75;
+          scale = 0.9 ** Math.abs(index - currentChild);
 
           style = {
             transform: `translateX(${translateX}%) scale(${scale})`,
@@ -48,12 +49,26 @@ function CarouselView({ videos }) {
 
         style = {
           ...style,
-          zIndex: table.length - Math.abs(index - currentVideo)
+          zIndex: table.length - Math.abs(index - currentChild)
+        }
+
+        let active = false;
+        let allowClick = false;
+        if (index === currentChild) {
+          active = true;
+          allowClick = true;
         }
 
         return (
-          <VideoContainer key={`video-${element.id}`} active={index === currentVideo}
-          style={style} onClick={handleVideoClick} video={element} />
+          <Fragment>
+            {cloneElement(element, {
+              active,
+              allowClick,
+              style,
+              className: 'carousel-view__element',
+              onClick: handleVideoClick
+            })}
+          </Fragment>
         )
       })}
     </div>

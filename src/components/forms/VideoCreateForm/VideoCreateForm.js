@@ -15,7 +15,9 @@ class VideoCreateForm extends Component {
     description: '',
     videoUrl: '',
     noVideo: false,
-    thumbnail: placeholder
+    thumbnail: placeholder,
+    formTitle: 'Dodaj video',
+    submitButtonValue: 'Dodaj'
   };
 
   getThumbnail = (url) => {
@@ -85,12 +87,17 @@ class VideoCreateForm extends Component {
       .catch(err => {
         console.log(err);
         this.setState({ noVideo: true });
-      })
+      });
+
+      this.setState({
+        formTitle: "Edytuj video",
+        submitButtonValue: "Zaktualizuj"
+      });
     }
   }
 
   render() {
-    const { title, description, videoUrl, noVideo, thumbnail } = this.state;
+    const { title, description, videoUrl, noVideo, thumbnail, formTitle, submitButtonValue } = this.state;
 
     if (noVideo) {
         return(
@@ -101,18 +108,23 @@ class VideoCreateForm extends Component {
     } else {
         return(
           <form className="video-create-form" onSubmit={this.handleSubmit}>
-            <div className="video-create-form__vertical">
-              <img className="video-create-form__thumbnail" src={thumbnail} alt="thumb" />
-              <div className="video-create-form__horizontal">
-                <Text name="title" label="Tytuł filmu" value={title} onChange={this.handleInputChange} required/>
-                <Text name="videoUrl" label="Adres URL" value={videoUrl}
-                onChange={this.handleInputChange} onBlur={this.handleBlurVideoUrl} required/>
+            <fieldset>
+              <legend>{formTitle}</legend>
+              <div className="video-create-form__vertical">
+                <img className="video-create-form__thumbnail" src={thumbnail} alt="thumb" />
+                <div className="video-create-form__horizontal">
+                  <Text name="title" label="Tytuł filmu" value={title} onChange={this.handleInputChange} required/>
+                  <Text name="videoUrl" label="Adres URL" value={videoUrl}
+                  onChange={this.handleInputChange} onBlur={this.handleBlurVideoUrl} required/>
+                </div>
               </div>
-            </div>
-            <div className="video-create-form__fluid">
-              <Text multiline name="description" label="Opis" value={description} onChange={this.handleInputChange} required/>
-            </div>
-              <input type="submit" value="Dodaj" />
+              <div className="video-create-form__fluid">
+                <Text multiline name="description" label="Opis" value={description} onChange={this.handleInputChange} required/>
+              </div>
+              <div className="video-create-form__buttons">
+                <input type="submit" value={submitButtonValue} />
+              </div>
+            </fieldset>
           </form>
         );
     }

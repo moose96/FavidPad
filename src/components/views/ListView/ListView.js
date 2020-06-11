@@ -1,19 +1,14 @@
-import React from 'react';
-import { useHistory } from 'react-router-dom';
+import React, { Fragment, cloneElement } from 'react';
 
-import VideoContainer from '../../video/VideoContainer';
+import './ListView.scss';
 
-function ListView({ videos }) {
-  const history = useHistory();
-
-  const handleClick = (id) => {
-    history.push(`/video/${id}`);
-  }
-
+function ListView({ children }) {
   return (
-    <div className="video-list--list">
-      {videos.map((element) =>
-        <VideoContainer key={element.id} video={element} onClick={handleClick} />
+    <div className="list-view">
+      {children.map((element) =>
+        <Fragment>
+          {cloneElement(element, { allowClick: true, className: 'list-view__element' })}
+        </Fragment>
       )}
     </div>
   );

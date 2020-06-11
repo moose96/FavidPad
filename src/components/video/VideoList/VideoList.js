@@ -1,12 +1,13 @@
 import React,{ useState, useEffect, Fragment } from 'react';
+import { Link } from 'react-router-dom';
 
-// import VideoContainer from '../VideoContainer';
+import VideoContainer from '../VideoContainer';
 import { API_URL } from '../../../global';
 import './VideoList.scss';
 import CarouselView from '../../views/CarouselView';
 import ListView from '../../views/ListView';
 
-function VideoList({ viewType }) {
+function VideoList({ viewType, limit }) {
   const [videos, setVideos] = useState([{ video_url: ''}]);
 
   useEffect(() => {
@@ -16,17 +17,39 @@ function VideoList({ viewType }) {
   },[]);
 
   let view;
+  let videosToMap = videos;
+
+  if (limit) {
+    videosToMap = videos.slice(0, limit);
+  }
+
+  const children = videosToMap.map((element) =>
+    <VideoContainer key={element.id} video={element} />
+  );
 
   if (viewType === 'carousel') {
-    view = <CarouselView videos={videos} />
+    view = (
+      <Fragment>
+        <CarouselView>
+          {children}
+        </CarouselView>
+        <div className="video-list__toolbar">
+          <Link to="/video/create"><span className="icon icon-plus"></span> Dodaj</Link>
+        </div>
+      </Fragment>
+    );
   } else if(viewType === 'listView') {
-    view = <ListView videos={videos} />
+    view = (
+      <ListView>
+        {children}
+      </ListView>
+    );
   }
 
   return (
-    <Fragment>
+    <div className="video-list">
       {view}
-    </Fragment>
+    </div>
   );
 }
 
