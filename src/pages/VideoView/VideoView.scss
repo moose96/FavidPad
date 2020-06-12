@@ -1,3 +1,5 @@
+@import '../../styles/mixins';
+
 .video-view {
   display: flex;
   padding-left: 1rem;
@@ -29,4 +31,10 @@
         width: 50%;
       }
     }
+}
+
+@include portrait {
+  .video-view {
+    flex-direction: column;
+  }
 }

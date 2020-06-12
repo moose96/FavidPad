@@ -6,12 +6,13 @@ import {
 
 import Header from './components/template/Header';
 import Content from './components/template/Content';
+import Footer from './components/template/Footer';
 import Home from './pages/Home';
 import About from './pages/About';
 import Page404 from './pages/Page404';
 import VideoView from './pages/VideoView';
 import VideoCreateForm from './components/forms/VideoCreateForm';
-import './App.css';
+import './App.scss';
 
 class App extends Component {
   render () {
@@ -27,6 +28,7 @@ class App extends Component {
             <Route exact path="/"><Home /></Route>
             <Route path="*"><Page404 /></Route>
           </Content>
+          <Footer />
         </div>
       </Router>
     );

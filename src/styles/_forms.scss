@@ -1,0 +1,55 @@
+@import 'variables';
+
+$form-background-color: adjust-color($background-color, $saturation: -40%, $lightness: 10%);
+
+form {
+  fieldset {
+    background-color: $form-background-color;
+    border-radius: 3px 3px 3px 3px;
+    width: 100%;
+    // border: 1px solid white;
+    border: none;
+    padding: 1rem 2rem 1rem 2rem;
+
+    legend {
+      text-align: center;
+      font-size: 1.2rem;
+    }
+  }
+
+  input[type="text"],
+  textarea {
+    font-size: 1rem;
+    border: 0;
+    border-radius: 3px 3px 3px 3px;
+    color: $text-color;
+    padding: 5px 5px 5px 5px;
+    background-color: darken($form-background-color, 10%);
+  }
+}
+
+input[type="submit"],
+  input[type="reset"],
+  button,
+  .button--flat {
+    border: none;
+    font-size: 1rem;
+    background: none;
+    text-decoration: none !important;
+    color: $text-color !important;
+    border: 2px solid $text-color;
+    padding: 0.5rem 2rem 0.5rem 2rem;
+    transition: background-color $transition-time, color $transition-time;
+
+    &.default,
+    &:hover {
+      background-color: $text-color;
+      color: invert($text-color) !important;
+
+      transition: background-color $transition-time, color $transition-time;
+    }
+
+    &.default:hover {
+      filter: brightness(1.2);
+    }
+  }

@@ -2,7 +2,7 @@ import React from 'react';
 
 import './MessageBox.scss';
 
-function MessageBox({ className, children, type, onReject, onSubmit }) {
+function MessageBox({ className, children, type, onReject, onSubmit, defaultButton }) {
   const buttonTypes = ['submit', 'reset'];
   const buttonLayoutTypes = {
     'ok': ['OK'],
@@ -17,7 +17,10 @@ function MessageBox({ className, children, type, onReject, onSubmit }) {
       </div>
       <div className="message-box__buttons">
         {buttonLayoutTypes[type].map((element, index) => (
-          <input key={`message-box-button-${index}`} type={buttonTypes[index]} value={element} />
+          <input className={buttonTypes[index] === defaultButton && 'default'}
+            key={`message-box-button-${index}`}
+            type={buttonTypes[index]}
+            value={element} />
         ))}
       </div>
     </form>

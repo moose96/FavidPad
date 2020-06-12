@@ -1,4 +1,8 @@
+@import '../../../styles/variables';
+
 header {
     text-align: center;
     box-shadow: 0 2px 5px 0 #000;
+    background-color: adjust-color($background-color, $saturation: -40%,$lightness: 10%, $alpha: -0.5);
+    z-index: 10;
 }

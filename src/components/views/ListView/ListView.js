@@ -7,7 +7,10 @@ function ListView({ children }) {
     <div className="list-view">
       {children.map((element) =>
         <Fragment>
-          {cloneElement(element, { allowClick: true, className: 'list-view__element' })}
+          {cloneElement(element, {
+            allowClick: true,
+            className: 'list-view__element'
+           })}
         </Fragment>
       )}
     </div>

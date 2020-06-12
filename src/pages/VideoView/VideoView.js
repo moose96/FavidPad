@@ -7,7 +7,8 @@ import VideoUrlParser from '../../utility/urlparser/';
 import './VideoView.scss';
 import VideoList from '../../components/video/VideoList';
 import Loading from '../../components/views/Loading';
-import NotFound from '../../components/views/NotFound';
+import StandardTemplate from '../../templates/VideoView/StandardTemplate'
+import NotFoundTemplate from '../../templates/VideoView/NotFoundTemplate'
 
 const IsVideo = ({ video }) => (
     <Fragment>
@@ -28,7 +29,6 @@ function VideoView(props) {
   const [notFound, setNotFound] = useState(false);
 
   const parser = new VideoUrlParser();
-  let _component = null;
   const { id } = useParams();
 
   useEffect(() => { // potwór :(
@@ -52,30 +52,25 @@ function VideoView(props) {
     });
   },[id]);
 
+  let template
+
   if (!notFound) {
     if (video) {
-      _component = <IsVideo video={video} />
+      template = <StandardTemplate video={video} />;
     } else {
-      _component = (
+      template = (
         <div className="video-view__loading-placeholder">
           <Loading />
         </div>
       )
     }
   } else {
-    _component = (
-      <Fragment>
-        <div className="video-view__loading-placeholder">
-          <NotFound message="Nie znaleziono filmu" />
-        </div>
-        <VideoList viewType="listView" />
-      </Fragment>
-    )
+    template = <NotFoundTemplate />
   }
 
   return (
     <div className="video-view">
-      {_component}
+      {template}
     </div>
   );
 

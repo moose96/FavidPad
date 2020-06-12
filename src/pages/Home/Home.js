@@ -1,19 +1,39 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
 import VideoList from '../../components/video/VideoList';
 import '../../styles/iconmoon/style.scss';
 import '../styles.scss';
+import Video from '../../components/video/Video/Video';
 
 function Home() {
-    return(
-        <Fragment>
-            {/* <div className="home__toolbar">
-                <Link to="/video/create"><span className="icon icon-plus"></span> Dodaj</Link>
-            </div> */}
-            <VideoList />
-        </Fragment>
-    );
+  const [listViewType, setListViewType] = useState('carousel');
+
+  const handleOrientationChange = () => {
+    if (window.screen.orientation.type.match(/landscape/i)) {
+      setListViewType('carousel');
+    } else if (window.screen.orientation.type.match(/portrait/i)) {
+      setListViewType('listView');
+    }
+  }
+
+  useEffect(() => {
+    window.addEventListener('orientationchange', handleOrientationChange);
+    handleOrientationChange();
+
+    return () => {
+      window.removeEventListener('orientationchange', handleOrientationChange);
+    };
+  }, []);
+
+  return(
+    <Fragment>
+      {/* <div className="home__toolbar">
+          <Link to="/video/create"><span className="icon icon-plus"></span> Dodaj</Link>
+      </div> */}
+      <VideoList viewType={listViewType} />
+    </Fragment>
+  );
 }
 
 export default Home;

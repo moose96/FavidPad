@@ -7,7 +7,7 @@ import './VideoList.scss';
 import CarouselView from '../../views/CarouselView';
 import ListView from '../../views/ListView';
 
-function VideoList({ viewType, limit }) {
+function VideoList({ viewType, limit, onClick }) {
   const [videos, setVideos] = useState([{ video_url: ''}]);
 
   useEffect(() => {
@@ -34,7 +34,9 @@ function VideoList({ viewType, limit }) {
           {children}
         </CarouselView>
         <div className="video-list__toolbar">
-          <Link to="/video/create"><span className="icon icon-plus"></span> Dodaj</Link>
+          <Link className="button--flat" to="/video/create">
+            <span className="icon icon-plus"></span> Dodaj
+          </Link>
         </div>
       </Fragment>
     );

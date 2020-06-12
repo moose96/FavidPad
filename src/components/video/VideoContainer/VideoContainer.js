@@ -48,7 +48,9 @@ function VideoContainer({ className, active, allowClick, style, video, onClick }
 
   const handleDeleteVideoClick = () => {
     setFrame(2);
-    onClick(video.id);
+    if (onClick) {
+      onClick(video.id);
+    }
   }
 
   const classes = classnames(className,{
@@ -61,6 +63,7 @@ function VideoContainer({ className, active, allowClick, style, video, onClick }
     <Video {...video} active={active} onClick={handleClick} onDelete={handleDeleteVideoClick} />,
     <MessageBox className="delete-video-message-box"
       type="yes-no"
+      defaultButton="reset"
       onReject={() => setFrame(1)}
       onSubmit={handleDeleteVideo} >
       Czy na pewno chcesz usunąć to video?

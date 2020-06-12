@@ -1,0 +1,9 @@
+$background-color: hsl(219, 91%, 23%);
+// $background-color-2: complement($background-color);
+// $background-color: #85004B;
+// $background-color: #0027c2 ;
+$primary-color: white;
+$border-color: lighten($background-color, 30%);
+$text-color: #ddd;
+
+$transition-time: .25s;

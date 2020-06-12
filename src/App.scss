@@ -1,0 +1,20 @@
+@import './styles/variables';
+@import './styles//forms';
+
+.App {
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+  color: $text-color;
+  background: linear-gradient(-45deg, adjust-color($background-color, $lightness: 10%)/*$background-color-2 33%*/,
+    darken($background-color, 10%));
+
+  a {
+    color: adjust-color($background-color, $hue: 120, $lightness: 30%);
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}

@@ -1,19 +1,18 @@
+@import '../../../styles/variables';
+
 .video-container {
   margin-left: 1%;
   margin-right: 1%;
   // width: (1/4) * 100%;
-  border: 1px solid black;
+  border: 1px solid $border-color;
   border-radius: 5px 5px 5px 5px;
   padding: 1rem 1rem 1rem 1rem;
-  background-color: white;
+  background-color: adjust-color($background-color, $saturation: -40%, $lightness: 15%);
+  transition: box-shadow $transition-time;
 
   &:hover {
-    box-shadow: 0 0 10px 0 black;
-  }
-
-  .delete-video-message-box {
-    margin-top: 45%;
-    margin-bottom: 45%;
+    box-shadow: 0 0 10px 0 white;
+    transition: box-shadow $transition-time;
   }
 
   // &.active {
@@ -24,4 +23,13 @@
   //   position: absolute;
   //   transition: transform .5s;
   // }
+}
+
+.carousel-view {
+  .video-container {
+    .delete-video-message-box {
+      margin-top: 45%;
+      margin-bottom: 45%;
+    }
+  }
 }
