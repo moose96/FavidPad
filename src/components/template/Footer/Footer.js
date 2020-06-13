@@ -8,7 +8,8 @@ function Footer() {
 
   return (
     <div className="footer">
-      <p>Copyright {year} by <a href="https://github.com/moose_96">Piotr Łosiak</a></p>
+      <p>Copyright {year} by <a href="https://github.com/moose96">Piotr Łosiak</a> ·
+        <a href="/about"> O aplikacji</a></p>
     </div>
   );
 }

@@ -1,0 +1,41 @@
+@import '../../../styles/variables';
+
+$button-background-color: darken($background-color,5%);
+
+.button {
+  text-decoration: none !important;
+  color: $text-color !important;
+  border: none;
+  padding: 0.1rem 0.5rem 0.1rem 0.5rem;
+  background-color: $button-background-color;
+  transition: background-color $transition-time;
+
+  &:hover {
+    background-color: darken($button-background-color, 5%);
+    transition: background-color $transition-time;
+  }
+
+  &--flat {
+    background: none;
+  }
+
+  &--flat-contrast {
+    background: none;
+    font-size: 1rem;
+    border: 2px solid $text-color;
+    padding: 0.5rem 2rem 0.5rem 2rem;
+    transition: background-color $transition-time, color $transition-time;
+
+    &.default,
+    &:hover {
+      background-color: $text-color;
+      color: invert($text-color) !important;
+
+      transition: background-color $transition-time, color $transition-time;
+    }
+
+    &.default:hover {
+      filter: brightness(1.2);
+    }
+  }
+}

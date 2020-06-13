@@ -1,5 +1,6 @@
 import React from 'react';
 
+import Button from '../Button';
 import './MessageBox.scss';
 
 function MessageBox({ className, children, type, onReject, onSubmit, defaultButton }) {
@@ -17,10 +18,11 @@ function MessageBox({ className, children, type, onReject, onSubmit, defaultButt
       </div>
       <div className="message-box__buttons">
         {buttonLayoutTypes[type].map((element, index) => (
-          <input className={buttonTypes[index] === defaultButton && 'default'}
+          <Button type="flat-contrast"
+            Default={buttonTypes[index] === defaultButton}
             key={`message-box-button-${index}`}
-            type={buttonTypes[index]}
-            value={element} />
+            as={buttonTypes[index]} >
+            {element}</Button>
         ))}
       </div>
     </form>

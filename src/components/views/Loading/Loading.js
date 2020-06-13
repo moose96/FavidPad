@@ -1,6 +1,5 @@
 import React from 'react';
 
-import spinner from '../../../images/132-spinner10.svg';
 import '../../../styles/iconmoon/style.scss';
 import './Loading.scss';
 

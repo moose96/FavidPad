@@ -32,6 +32,10 @@
   &__buttons {
     display: flex;
     justify-content: flex-end;
+
+    * {
+      margin-left: 1rem;
+    }
   }
 
   // fieldset {

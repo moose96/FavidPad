@@ -1,10 +1,8 @@
 import React, { Fragment, useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
 
 import VideoList from '../../components/video/VideoList';
 import '../../styles/iconmoon/style.scss';
 import '../styles.scss';
-import Video from '../../components/video/Video/Video';
 
 function Home() {
   const [listViewType, setListViewType] = useState('carousel');

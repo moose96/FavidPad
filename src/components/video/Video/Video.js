@@ -1,6 +1,6 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 
+import Button from '../../forms/Button';
 import VideoUrlParser from '../../../utility/urlparser/';
 import '../../../styles/iconmoon/style.scss';
 import './Video.scss';
@@ -13,8 +13,12 @@ function Video({ title, description, video_url, id, onClick, onDelete }) {
       <div className="video__header">
         <h2>{title}</h2>
         <div className="video__toolbar">
-          <Link to={`/video/${id}/update`}><span className="icon icon-pencil"></span></Link>
-          <Link onClick={onDelete}><span className="icon icon-cross"></span></Link>
+          <Button as="link" type="flat" linkTo={`/video/${id}/update`}>
+            <span className="icon icon-pencil"></span>
+          </Button>
+          <Button as="link" type="flat" onClick={onDelete}>
+            <span className="icon icon-cross"></span>
+          </Button>
         </div>
       </div>
       <div className="video__content" onClick={onClick}>

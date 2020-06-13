@@ -28,28 +28,28 @@ form {
   }
 }
 
-input[type="submit"],
-  input[type="reset"],
-  button,
-  .button--flat {
-    border: none;
-    font-size: 1rem;
-    background: none;
-    text-decoration: none !important;
-    color: $text-color !important;
-    border: 2px solid $text-color;
-    padding: 0.5rem 2rem 0.5rem 2rem;
-    transition: background-color $transition-time, color $transition-time;
+// input[type="submit"],
+//   input[type="reset"],
+//   button,
+//   .button--flat {
+//     border: none;
+//     font-size: 1rem;
+//     background: none;
+//     text-decoration: none !important;
+//     color: $text-color !important;
+//     border: 2px solid $text-color;
+//     padding: 0.5rem 2rem 0.5rem 2rem;
+//     transition: background-color $transition-time, color $transition-time;
 
-    &.default,
-    &:hover {
-      background-color: $text-color;
-      color: invert($text-color) !important;
+//     &.default,
+//     &:hover {
+//       background-color: $text-color;
+//       color: invert($text-color) !important;
 
-      transition: background-color $transition-time, color $transition-time;
-    }
+//       transition: background-color $transition-time, color $transition-time;
+//     }
 
-    &.default:hover {
-      filter: brightness(1.2);
-    }
-  }
+//     &.default:hover {
+//       filter: brightness(1.2);
+//     }
+//   }

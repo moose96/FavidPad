@@ -1,11 +1,11 @@
 import React,{ useState, useEffect, Fragment } from 'react';
-import { Link } from 'react-router-dom';
 
 import VideoContainer from '../VideoContainer';
 import { API_URL } from '../../../global';
 import './VideoList.scss';
 import CarouselView from '../../views/CarouselView';
 import ListView from '../../views/ListView';
+import Button from '../../forms/Button';
 
 function VideoList({ viewType, limit, onClick }) {
   const [videos, setVideos] = useState([{ video_url: ''}]);
@@ -33,11 +33,6 @@ function VideoList({ viewType, limit, onClick }) {
         <CarouselView>
           {children}
         </CarouselView>
-        <div className="video-list__toolbar">
-          <Link className="button--flat" to="/video/create">
-            <span className="icon icon-plus"></span> Dodaj
-          </Link>
-        </div>
       </Fragment>
     );
   } else if(viewType === 'listView') {
@@ -51,6 +46,11 @@ function VideoList({ viewType, limit, onClick }) {
   return (
     <div className="video-list">
       {view}
+      <div className="video-list__toolbar">
+        <Button as="link" type="flat-contrast" linkTo="/video/create">
+          <span className="icon icon-plus"></span> Dodaj
+        </Button>
+        </div>
     </div>
   );
 }

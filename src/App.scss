@@ -1,5 +1,6 @@
 @import './styles/variables';
 @import './styles//forms';
+@import './styles/mixins';
 
 .App {
   display: flex;
@@ -17,4 +18,17 @@
       text-decoration: underline;
     }
   }
+}
+
+@include portrait {
+  .App {
+    height: auto;
+    min-height: 100%;;
+  }
+}
+
+
+.h-auto {
+  height: auto;
+  min-height: 100%;
 }

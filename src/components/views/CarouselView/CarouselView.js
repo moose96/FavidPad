@@ -28,13 +28,20 @@ function CarouselView({ children }) {
     calculateNewVideoIndex(Math.floor(event.deltaY) / 2);
   }
 
-  const handleTouchEvent = (event) => {
-    calculateNewVideoIndex(lastTouchXValue - event.changedTouches[0].clientX);
+  const handleTouchStart = (event) => {
     setLastTouchXValue(event.changedTouches[0].clientX);
   }
 
+  const handleTouchCancel = (event) => {
+    calculateNewVideoIndex(lastTouchXValue - event.changedTouches[0].clientX);
+  }
+
   return (
-    <div className="carousel-view" onWheel={handleMouseWheel} onTouchMove={handleTouchEvent}>
+    <div className="carousel-view"
+      onWheel={handleMouseWheel}
+      onTouchStart={handleTouchStart}
+      onTouchEnd={handleTouchCancel} >
+
       {children.map((element, index, table) => {
         let translateX, scale, style;
 

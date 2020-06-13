@@ -2,6 +2,7 @@ import React,{ Component } from 'react';
 
 import { API_URL } from '../../../global';
 import { Text } from '..';
+import Button from '../Button';
 import './VideoCreateForm.scss';
 import '../../../styles/iconmoon/style.scss';
 import VideoUrlParser from '../../../utility/urlparser';
@@ -32,6 +33,10 @@ class VideoCreateForm extends Component {
 
   handleBlurVideoUrl = (event) => {
     this.getThumbnail(event.target.value);
+  }
+
+  handleReset = (event) => {
+    this.props.history.goBack();
   }
 
   handleSubmit = (event) => {
@@ -107,7 +112,7 @@ class VideoCreateForm extends Component {
         );
     } else {
         return(
-          <form className="video-create-form" onSubmit={this.handleSubmit}>
+          <form className="video-create-form" onSubmit={this.handleSubmit} onReset={this.handleReset}>
             <fieldset>
               <legend>{formTitle}</legend>
               <div className="video-create-form__vertical">
@@ -122,7 +127,8 @@ class VideoCreateForm extends Component {
                 <Text multiline name="description" label="Opis" value={description} onChange={this.handleInputChange} required/>
               </div>
               <div className="video-create-form__buttons">
-                <input type="submit" value={submitButtonValue} />
+                <Button as="reset" type="flat-contrast">Anuluj</Button>
+                <Button as="submit" Default type="flat-contrast">{submitButtonValue}</Button>
               </div>
             </fieldset>
           </form>
