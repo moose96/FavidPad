@@ -8,10 +8,12 @@ function Home() {
   const [listViewType, setListViewType] = useState('carousel');
 
   const handleOrientationChange = () => {
-    if (window.screen.orientation.type.match(/landscape/i)) {
-      setListViewType('carousel');
-    } else if (window.screen.orientation.type.match(/portrait/i)) {
-      setListViewType('listView');
+    if (window.screen.orientation) {
+      if (window.screen.orientation.type.match(/landscape/i)) {
+        setListViewType('carousel');
+      } else if (window.screen.orientation.type.match(/portrait/i)) {
+        setListViewType('listView');
+      }
     }
   }
 

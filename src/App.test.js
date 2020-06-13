@@ -4,6 +4,12 @@ import App from './App';
 
 test('renders VideoList inside', () => {
   const { container } = render(<App />);
-  const videoList = container.querySelector('.video-list');
-  expect(videoList).toBeInTheDocument();
+
+  const selectors = ['header', 'content', '.footer'];
+
+  selectors.forEach((element) => {
+    console.log(element);
+    const subElement = container.querySelector(element);
+    expect(subElement).toBeInTheDocument();
+  })
 });

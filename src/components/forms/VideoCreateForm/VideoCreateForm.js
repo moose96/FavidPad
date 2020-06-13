@@ -21,10 +21,6 @@ class VideoCreateForm extends Component {
     submitButtonValue: 'Dodaj'
   };
 
-  getThumbnail = (url) => {
-    this.setState({ thumbnail: this.parser.parseThumb(url) });
-  }
-
   handleInputChange = (event) => {
     this.setState({
       [event.target.name]: event.target.value
@@ -32,7 +28,11 @@ class VideoCreateForm extends Component {
   }
 
   handleBlurVideoUrl = (event) => {
-    this.getThumbnail(event.target.value);
+    const url = this.parser.parseThumb(event.target.value);
+
+    if (url.length > 0) {
+      this.setState({ thumbnail: url });
+    }
   }
 
   handleReset = (event) => {
@@ -40,7 +40,6 @@ class VideoCreateForm extends Component {
   }
 
   handleSubmit = (event) => {
-    console.log(event);
     event.preventDefault();
     let method = 'POST';
 
@@ -116,7 +115,9 @@ class VideoCreateForm extends Component {
             <fieldset>
               <legend>{formTitle}</legend>
               <div className="video-create-form__vertical">
-                <img className="video-create-form__thumbnail" src={thumbnail} alt="thumb" />
+                <a href={videoUrl} target="blank">
+                  <img className="video-create-form__thumbnail" src={thumbnail} alt="thumb" />
+                </a>
                 <div className="video-create-form__horizontal">
                   <Text name="title" label="Tytuł filmu" value={title} onChange={this.handleInputChange} required/>
                   <Text name="videoUrl" label="Adres URL" value={videoUrl}

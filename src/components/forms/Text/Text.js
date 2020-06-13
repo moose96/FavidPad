@@ -4,12 +4,14 @@ import './Text.scss';
 
 function Text(props) {
   const lineText = <input type="text" {...props} />;
-  const multiLineText = <textarea {...props} />;
+  let modifiedProps = {...props};
+  delete modifiedProps.multiline;
+  const multiLineText = <textarea {...modifiedProps} />;
   const asterisk = <span className="form-input__asterisk">*</span>;
 
   return (
     <div className="form-input">
-      <label for={props.name}>
+      <label htmlFor={props.name}>
         {props.label}
         {props.required && asterisk}
       </label>

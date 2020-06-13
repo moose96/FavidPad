@@ -11,30 +11,3 @@ test('render VideoView while loading data',() => {
     </MemoryRouter>
     );
 });
-
-test('render VideoView with router',() => {
-    const entries = ['/video/1','/video/2'];
-    const data = [{
-        id: "1",
-        title: "title",
-        description: "",
-        url: "https://youtube.com/watch?v=fgr34F5D"
-    }];
-    const results = ['title','Nie znaleziono filmu'];
-
-    for (let i = 0; i < 2; i++) {
-        console.log(`Entry: ${entries[i]}`);
-
-        const { getByText } = render(
-        <MemoryRouter initialEntries={entries} initialIndex={i}>
-            <Switch>
-                <Route path="/video/:id">
-                    <VideoView videos={data} loadingData={false} />
-                </Route>
-            </Switch>
-        </MemoryRouter>
-        );
-
-        expect(getByText(results[i])).toBeInTheDocument();
-    }
-})

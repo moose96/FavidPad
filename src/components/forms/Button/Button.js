@@ -33,7 +33,8 @@ function Button ({ as, className, children, type, Default, linkTo, onClick }) {
 
 Button.defaultProps = {
   as: 'button',
-  type: 'button'
+  type: 'button',
+  linkTo: '#'
 }
 
 export default Button;

@@ -7,7 +7,7 @@ import VideoContainer from './VideoContainer';
 test('render video container with loading page', () =>{
   const { container, getByText } = render(<VideoContainer />);
   expect(container).toBeInTheDocument();
-  expect(getByText(/Loading/i)).toBeInTheDocument();
+  expect(getByText(/Ładowanie/i)).toBeInTheDocument();
 });
 
 test('render video container with video', () =>{

@@ -69,6 +69,7 @@ function CarouselView({ children }) {
         return (
           <Fragment>
             {cloneElement(element, {
+              key: `carousel-view-${element.key}`,
               active,
               allowClick,
               style,
