@@ -38,15 +38,6 @@
     }
   }
 
-  // fieldset {
-  //   width: 100%;
-  //   border: 3px solid black;
-
-  //   legend {
-  //     text-align: center;
-  //   }
-  // }
-
   textarea {
     height: 5rem;
   }
@@ -57,25 +48,3 @@
   flex-direction: column;
   margin-bottom: 1rem;
 }
-
-// input[type="text"],
-// textarea {
-//   font-size: 1rem;
-//   border-radius: 3px 3px 3px 3px;
-//   border: 0px solid #aaa;
-//   padding: 5px 5px 5px 5px;
-//   box-shadow: 0px 0px 2px;
-// }
-
-// input[type="submit"],
-// input[type="reset"],
-// button {
-//   border: none;
-//   background-color: aqua;
-//   border-radius: 2px 2px 2px 2px;
-//   padding-top: 5px;
-//   padding-bottom: 5px;
-//   padding-left: 1rem;
-//   padding-right: 1rem;
-//   font-size: 1rem;
-// }

@@ -3,7 +3,6 @@
 .video-container {
   margin-left: 1%;
   margin-right: 1%;
-  // width: (1/4) * 100%;
   border: 1px solid $border-color;
   border-radius: 5px 5px 5px 5px;
   padding: 1rem 1rem 1rem 1rem;
@@ -14,15 +13,6 @@
     box-shadow: 0 0 10px 0 white;
     transition: box-shadow $transition-time;
   }
-
-  // &.active {
-  //   transition: transform .5s;
-  // }
-
-  // &:not(.active) {
-  //   position: absolute;
-  //   transition: transform .5s;
-  // }
 }
 
 .carousel-view {

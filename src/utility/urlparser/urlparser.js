@@ -15,11 +15,6 @@ class VideoUrlParser {
         }
     ];
 
-    // _sourceObj = {
-    //     type: 'video',
-    //     sources: []
-    // };
-
     _getVidID = (url,pattern) => {
         return url.slice(url.lastIndexOf(pattern) + pattern.length);
     }

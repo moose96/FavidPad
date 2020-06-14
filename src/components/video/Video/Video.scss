@@ -1,5 +1,5 @@
 @import '../../../styles/variables';
-@import '../../../styles//mixins';
+@import '../../../styles/mixins';
 
 .video {
   &__header {
@@ -25,16 +25,6 @@
     align-items: center;
 
     .button {
-      // padding: 0.1rem 0.5rem 0.1rem 0.5rem;
-      // color: $text-color !important;
-      // text-decoration: none !important;
-      // transition: background-color $transition-time;
-
-      // &:hover {
-      //   background-color: darken($background-color, 5%);
-      //   transition: background-color $transition-time;
-      // }
-
       &:first-child {
         border-top-left-radius: 3px;
       }
@@ -48,12 +38,6 @@
   h2 {
     margin: 0 0 0 0;
   }
-
-  // a {
-  //     text-decoration: none;
-  //     color: black;
-  // }
-
 }
 
 .carousel-view {

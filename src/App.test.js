@@ -8,7 +8,6 @@ test('renders VideoList inside', () => {
   const selectors = ['header', 'content', '.footer'];
 
   selectors.forEach((element) => {
-    console.log(element);
     const subElement = container.querySelector(element);
     expect(subElement).toBeInTheDocument();
   })

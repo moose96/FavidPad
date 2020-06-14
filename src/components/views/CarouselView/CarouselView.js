@@ -7,7 +7,6 @@ function CarouselView({ children }) {
   const [lastTouchXValue, setLastTouchXValue] = useState(0);
 
   const handleVideoClick = (id) => {
-    console.log(children);
     let index = children.findIndex((element) => element.props.video.id === id);
     setCurrentChild(index);
   }
@@ -33,7 +32,10 @@ function CarouselView({ children }) {
   }
 
   const handleTouchCancel = (event) => {
-    calculateNewVideoIndex(lastTouchXValue - event.changedTouches[0].clientX);
+    const delta = lastTouchXValue - event.changedTouches[0].clientX;
+    if (Math.abs(delta) > 5) {
+      calculateNewVideoIndex(delta);
+    }
   }
 
   return (

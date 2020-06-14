@@ -1,5 +1,5 @@
 @import './styles/variables';
-@import './styles//forms';
+@import './styles/forms';
 @import './styles/mixins';
 
 .App {
@@ -7,7 +7,7 @@
   height: 100%;
   flex-direction: column;
   color: $text-color;
-  background: linear-gradient(-45deg, adjust-color($background-color, $lightness: 10%)/*$background-color-2 33%*/,
+  background: linear-gradient(-45deg, adjust-color($background-color, $lightness: 10%),
     darken($background-color, 10%));
 
   a {

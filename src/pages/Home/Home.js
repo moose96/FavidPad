@@ -29,7 +29,6 @@ function Home() {
   return(
     <Fragment>
       {/* <div className="home__toolbar">
-          <Link to="/video/create"><span className="icon icon-plus"></span> Dodaj</Link>
       </div> */}
       <VideoList viewType={listViewType} />
     </Fragment>

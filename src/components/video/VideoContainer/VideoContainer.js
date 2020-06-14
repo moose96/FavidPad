@@ -5,7 +5,6 @@ import classnames from 'classnames';
 import { API_URL } from '../../../global';
 import Video from '../Video/Video';
 import './VideoContainer.scss';
-// import DeleteVideoForm from '../../forms/DeleteVideoForm';
 import MessageBox from '../../forms/MessageBox';
 import Loading from '../../views/Loading';
 
@@ -38,7 +37,6 @@ function VideoContainer({ className, active, allowClick, style, video, onClick }
       .then(response => {
         if (response.status === 200) {
           history.push('/');
-          console.log('OK');
         } else {
           throw Error(`response error: ${response.status}`)
         }

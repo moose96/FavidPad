@@ -89,7 +89,6 @@ class VideoCreateForm extends Component {
           },this.setState({ thumbnail: this.parser.parseThumb(data.video_url) }));
       })
       .catch(err => {
-        console.log(err);
         this.setState({ noVideo: true });
       });
 
