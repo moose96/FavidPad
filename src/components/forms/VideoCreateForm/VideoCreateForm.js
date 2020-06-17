@@ -47,7 +47,7 @@ class VideoCreateForm extends Component {
       method = 'PATCH';
     }
 
-    fetch(`${API_URL}/v1/movies`,{
+    fetch(`${API_URL}/movies`,{
       method,
       headers: {
         'Content-Type': 'application/json'
