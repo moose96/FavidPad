@@ -1,35 +1,57 @@
 import React, { Fragment } from 'react';
 import { render } from '@testing-library/react';
+import { mount } from 'enzyme';
 
 import MessageBox from './MessageBox';
 
-test('render message box', () => {
-  const buttonTypes = [
-    ['OK'], ['OK', 'Anuluj'], ['Tak', 'Nie']
-  ];
+describe('test message box', () => {
+  const handleReject = () => {};
+  const handleSubmit = () => {};
 
-  const { getAllByText } = render(
-    <Fragment>
-      <MessageBox type="yes-no">
-        value
+  const testSet = {
+    input: ['yes-no', 'ok-cancel'],
+    output: [
+      ['Tak', 'Nie'],
+      ['OK', 'Anuluj']
+    ]
+  };
+
+  it('should render default message box', () => {
+    const wrapper = mount(
+      <MessageBox onSubmit={handleSubmit} onReject={handleReject}>
+        message
       </MessageBox>
-      <MessageBox type="ok">
-        value
+    );
+    const messageBox = wrapper.find('.message-box');
+    const messageBoxButton = messageBox.find('.message-box__buttons').find('input');
+    expect(messageBox.text()).toBe('message');
+    expect(messageBoxButton.instance().value).toBe('OK');
+  });
+
+  it('should render default message box with custom class name', () => {
+    const wrapper = mount(
+      <MessageBox className="custom" onSubmit={handleSubmit} onReject={handleReject}>
+        message
       </MessageBox>
-      <MessageBox type="ok-cancel">
-        value
-      </MessageBox>
-    </Fragment>
-  );
+    );
+      const messageBox = wrapper.find('.message-box');
+      expect(messageBox.hasClass('custom')).toBe(true);
+  });
 
-  const msgBoxes = getAllByText(/value/i);
+  testSet.input.forEach((inputType, inputIndex) => {
+    it(`should render message box with "${inputType}" type`, () => {
+      const wrapper = mount(
+        <MessageBox type={inputType} onSubmit={handleSubmit} onReject={handleReject}>
+          message
+        </MessageBox>
+      );
+      const messageBox = wrapper.find('.message-box');
+      const messageBoxButtons = messageBox.find('.message-box__buttons input');
 
-  msgBoxes.forEach((element, index) => {
-    expect(element).toBeInTheDocument();
-
-    const buttons = element.querySelectorAll('.button');
-    buttons.forEach((button, buttonIndex) => {
-      expect(button.innerHTML).toEqual(buttonTypes[index][buttonIndex]);
+      messageBoxButtons.forEach((node, nodeIndex) => {
+        expect(node.instance().value).toBe(testSet.output[inputIndex][nodeIndex]);
+      });
     });
-  })
-})
+  });
+
+});

@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import classnames from 'classnames';
+import PropTypes from 'prop-types';
 
-import { API_URL } from '../../../global';
+import api from '../../../api';
 import Video from '../Video/Video';
 import './VideoContainer.scss';
 import MessageBox from '../../forms/MessageBox';
@@ -31,16 +32,8 @@ function VideoContainer({ className, active, allowClick, style, video, onClick }
   const handleDeleteVideo = (event) => {
     event.preventDefault();
 
-    fetch(`${API_URL}/movies/${video.id}`,{
-      method: 'DELETE'
-    })
-      .then(response => {
-        if (response.status === 200) {
-          history.push('/');
-        } else {
-          throw Error(`response error: ${response.status}`)
-        }
-      })
+    api.delete(`/movies/${video.id}`)
+      .then(() => history.push('/'))
       .catch(err => console.log(err));
   }
 
@@ -73,6 +66,20 @@ function VideoContainer({ className, active, allowClick, style, video, onClick }
       {children[frame]}
     </div>
   );
+}
+
+VideoContainer.propTypes = {
+  className: PropTypes.string,
+  active: PropTypes.bool,
+  allowClick: PropTypes.bool,
+  style: PropTypes.object,
+  video: PropTypes.shape({
+    id: PropTypes.string,
+    title: PropTypes.string,
+    description: PropTypes.string,
+    video_url: PropTypes.string
+  }),
+  onClick: PropTypes.func.isRequired
 }
 
 VideoContainer.defaultProps = {

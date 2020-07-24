@@ -3,13 +3,10 @@ export const API_URL = 'http://localhost:3000/v1';
 
 function request(url, method = 'GET', data = null) {
   const config = {
-    method: method,
-    headers: {
-      'Content-type': 'application/json'
-    }
+    method: method
   };
 
-  if (data) {
+  if (method === 'POST' || method === 'PATCH') {
     config.body = JSON.stringify(data);
   }
 
@@ -44,4 +41,4 @@ export default {
   post,
   patch,
   delete: _delete
-}
+};

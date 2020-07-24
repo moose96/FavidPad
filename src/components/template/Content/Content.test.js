@@ -1,15 +1,28 @@
 import React from 'react';
 import { render } from '@testing-library/react';
+import { mount } from 'enzyme';
 
 import Content from './Content';
 import { MemoryRouter } from 'react-router-dom';
 
-test('render content', () => {
-  const { container } = render(
-    <MemoryRouter initialEntries={['/']}>
-      <Content />
-    </MemoryRouter>
+describe('test Content', () => {
+  it('should render default content', () => {
+    const wrapper = mount(
+      <MemoryRouter initialEntries={['/']}>
+        <Content />
+      </MemoryRouter>
     );
 
-  expect(container).toBeInTheDocument();
-})
+    expect(wrapper.find('content')).not.toBe(null);
+  });
+
+  it('should render with auto height class', () => {
+    const wrapper = mount(
+      <MemoryRouter initialEntries={['/video/12356']}>
+        <Content />
+      </MemoryRouter>
+    );
+    const content = wrapper.find('content');
+    expect(content.hasClass('h-auto')).toBe(true);
+  });
+});

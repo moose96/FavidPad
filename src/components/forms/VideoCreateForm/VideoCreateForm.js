@@ -1,6 +1,6 @@
 import React,{ Component } from 'react';
 
-import { API_URL } from '../../../global';
+import api from '../../../api';
 import { Text } from '..';
 import Button from '../Button';
 import './VideoCreateForm.scss';
@@ -41,56 +41,36 @@ class VideoCreateForm extends Component {
 
   handleSubmit = (event) => {
     event.preventDefault();
-    let method = 'POST';
+
+    let data = {
+      title: this.state.title,
+      description: this.state.description,
+      video_url: this.state.videoUrl
+    };
 
     if (this.props.match.params.id) {
-      method = 'PATCH';
+      api.patch(`/movies/${this.props.match.params.id}`, data)
+        .then(() => this.props.history.push('/'))
+        .catch(err => console.log(err));
+    } else {
+      api.post('/movies')
+        .then(() => this.props.history.push('/'), data)
+        .catch(err => console.log(err));
     }
-
-    fetch(`${API_URL}/movies`,{
-      method,
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        title: this.state.title,
-        description: this.state.description,
-        video_url: this.state.videoUrl
-      })
-    })
-    .then(response => {
-      if (response.status === 201) {
-        this.props.history.push('/');
-      } else if (response.status === 400) {
-        throw Error('bad request');
-      } else if (response.status === 404) {
-        throw Error('not found');
-      }
-    })
-    .catch(err => console.log(err));
   }
 
   componentDidMount() {
     if (this.props.match.params.id) {
-      fetch(`${API_URL}/movies/${this.props.match.params.id}`)
-      .then(response => {
-        if(response.status === 200) {
-            return response.json();
-        } else {
-            throw Error('not found');
-        }
-      })
-      .then(data => {
+      api.get(`/movies/${this.props.match.params.id}`)
+        .then(data => {
           this.setState({
             title: data.title,
             description: data.description,
             videoUrl: data.video_url,
             noVideo: false
           },this.setState({ thumbnail: this.parser.parseThumb(data.video_url) }));
-      })
-      .catch(err => {
-        this.setState({ noVideo: true });
-      });
+        })
+        .catch(err => this.setState({ noVideo: true }));
 
       this.setState({
         formTitle: "Edytuj video",

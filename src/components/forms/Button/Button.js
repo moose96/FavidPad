@@ -1,6 +1,7 @@
 import React from 'react';
 import classnames from 'classnames';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 import './Button.scss';
 
@@ -31,10 +32,21 @@ function Button ({ as, className, children, type, Default, linkTo, onClick }) {
   }
 }
 
+Button.propTypes = {
+  as: PropTypes.string,
+  className: PropTypes.string,
+  children: PropTypes.node,
+  type: PropTypes.string,
+  Default: PropTypes.bool,
+  linkTo: PropTypes.string,
+  onClick: PropTypes.func.isRequired
+};
+
 Button.defaultProps = {
   as: 'button',
   type: 'button',
-  linkTo: '#'
+  linkTo: '#',
+  children: 'Button'
 }
 
 export default Button;

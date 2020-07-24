@@ -1,19 +1,19 @@
 import React,{ useState, useEffect, Fragment } from 'react';
+import PropTypes from 'prop-types';
 
 import VideoContainer from '../VideoContainer';
-import { API_URL } from '../../../global';
+import api from '../../../api';
 import './VideoList.scss';
 import CarouselView from '../../views/CarouselView';
 import ListView from '../../views/ListView';
 import Button from '../../forms/Button';
 
 function VideoList({ viewType, limit, onClick }) {
-  const [videos, setVideos] = useState([{ video_url: ''}]);
+  const [videos, setVideos] = useState([{ video_url: '' }]);
 
   useEffect(() => {
-    fetch(`${API_URL}/movies`)
-    .then(response => response.json())
-    .then(data => setVideos(data));
+    api.get('/movies')
+      .then(data => setVideos(data));
   },[]);
 
   let view;
@@ -53,6 +53,10 @@ function VideoList({ viewType, limit, onClick }) {
         </div>
     </div>
   );
+}
+
+VideoList.propTypes = {
+  viewType: PropTypes.string
 }
 
 VideoList.defaultProps = {

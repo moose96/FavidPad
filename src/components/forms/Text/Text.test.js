@@ -1,22 +1,20 @@
 import React from 'react';
-import { render } from '@testing-library/react';
+import { shallow } from 'enzyme';
 
 import Text from './Text';
 
-test('render Text', () => {
-  const { container, getByText } = render(
-    <div>
-      <Text name="test" value="valinp" onChange={() => {}} />
-      <Text name="test" value="valera" onChange={() => {}} multiline/>
-    </div>
-  );
+describe('test Text', () => {
+  const handleChange = () => {};
 
-  const input = container.querySelector('input');
-  const textarea = getByText(/valera/i);
+  it ('should render input', () => {
+    const wrapper = shallow(<Text onChange={handleChange} />);
+    const text = wrapper.find('input');
+    expect(text).not.toBe(null);
+  });
 
-  expect(input).toBeInTheDocument();
-  expect(textarea).toBeInTheDocument();
-
-  expect(input.type).toEqual('text');
-  expect(textarea.type).toEqual('textarea');
+  it ('should render textarea', () => {
+    const wrapper = shallow(<Text onChange={handleChange} multiline/>);
+    const text = wrapper.find('textarea');
+    expect(text).not.toBe(null);
+  });
 });

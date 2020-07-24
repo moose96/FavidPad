@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import Button from '../Button';
 import './MessageBox.scss';
@@ -27,6 +28,19 @@ function MessageBox({ className, children, type, onReject, onSubmit, defaultButt
       </div>
     </form>
   );
+}
+
+MessageBox.propTypes = {
+  className: PropTypes.string,
+  children: PropTypes.string.isRequired,
+  type: PropTypes.string,
+  onReject: PropTypes.func.isRequired,
+  onSubmit: PropTypes.func.isRequired,
+  defaultButton: PropTypes.string
+};
+
+MessageBox.defaultProps = {
+  type: 'ok'
 }
 
 export default MessageBox;
