@@ -1,27 +1,26 @@
-import React,{ useState, useEffect, Fragment } from 'react';
+import React,{ Fragment } from 'react';
 import PropTypes from 'prop-types';
 
 import VideoContainer from '../VideoContainer';
-import api from '../../../api';
 import './VideoList.scss';
 import CarouselView from '../../views/CarouselView';
 import ListView from '../../views/ListView';
 import Button from '../../forms/Button';
 
-function VideoList({ viewType, limit, onClick }) {
-  const [videos, setVideos] = useState([{ video_url: '' }]);
+function VideoList({ viewType, data, limit, onClick }) {
+  // const [videos, setVideos] = useState([{ video_url: '' }]);
 
-  useEffect(() => {
-    api.get('/movies')
-      .then(data => setVideos(data));
-  },[]);
+  // useEffect(() => {
+  //   api.get('/movies')
+  //     .then(data => setVideos(data));
+  // },[]);
 
   let view;
-  let videosToMap = videos;
+  let videosToMap = data;
 
-  if (limit) {
-    videosToMap = videos.slice(0, limit);
-  }
+  // if (limit) {
+  //   videosToMap = videos.slice(0, limit);
+  // }
 
   const children = videosToMap.map((element) =>
     <VideoContainer key={element.id} video={element} />

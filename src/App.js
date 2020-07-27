@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+import React from 'react';
 import {
   BrowserRouter as Router,
   Route
 } from 'react-router-dom';
 import classnames from 'classnames';
+import { connect } from 'react-redux';
 
 import Header from './components/template/Header';
 import Content from './components/template/Content';
@@ -12,16 +13,10 @@ import Home from './pages/Home';
 import About from './pages/About';
 import Page404 from './pages/Page404';
 import VideoView from './pages/VideoView';
-import VideoCreateForm from './components/forms/VideoCreateForm';
+import VideoFormContainer from './components/forms/VideoFormContainer';
 import './App.scss';
 
-function App() {
-  const [customHeight, setCustomHeight] = useState(false);
-
-  const handleCustomHeight = (customH) => {
-    setCustomHeight(customH);
-  }
-
+function App({ customHeight }) {
   const classes = classnames('App',{
     'h-auto': customHeight
   })
@@ -30,9 +25,9 @@ function App() {
     <Router>
       <div className={classes}>
         <Header />
-        <Content onCustomHeight={handleCustomHeight}>
-          <Route exact path="/video/create" component={VideoCreateForm} />
-          <Route exact path="/video/:id/update" component={VideoCreateForm} />
+        <Content>
+          <Route exact path="/video/create" component={VideoFormContainer} />
+          <Route exact path="/video/:id/update" component={VideoFormContainer} />
           <Route path="/video/:id" component={VideoView} />
           <Route path="/about"><About /></Route>
           <Route exact path="/"><Home /></Route>
@@ -44,4 +39,8 @@ function App() {
   );
 }
 
-export default App;
+const mapStateToProps = state => ({
+  customHeight: state.content.customHeight
+})
+
+export default connect(mapStateToProps)(App);

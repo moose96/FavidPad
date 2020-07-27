@@ -14,10 +14,10 @@ function Video({ title, description, video_url, id, onClick, onDelete }) {
       <div className="video__header">
         <h2>{title}</h2>
         <div className="video__toolbar">
-          <Button as="link" type="flat" linkTo={`/video/${id}/update`}>
+          <Button key={`button-${id}-1`} as="link" type="flat" linkTo={`/video/${id}/update`}>
             <span className="icon icon-pencil"></span>
           </Button>
-          <Button as="link" type="flat" onClick={onDelete}>
+          <Button key={`button-${id}-2`} as="link" type="flat" onClick={onDelete}>
             <span className="icon icon-cross"></span>
           </Button>
         </div>

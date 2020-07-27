@@ -1,14 +1,13 @@
-import React,{ Component } from 'react';
+import React,{ PureComponent } from 'react';
 
-import api from '../../../api';
-import { Text } from '..';
+import Text from '../Text';
 import Button from '../Button';
 import './VideoCreateForm.scss';
 import '../../../styles/iconmoon/style.scss';
 import VideoUrlParser from '../../../utility/urlparser';
 import placeholder from '../../../images/019-play.png';
 
-class VideoCreateForm extends Component {
+class VideoCreateForm extends PureComponent {
   parser = new VideoUrlParser();
 
   state = {
@@ -36,7 +35,7 @@ class VideoCreateForm extends Component {
   }
 
   handleReset = (event) => {
-    this.props.history.goBack();
+    this.props.onReset(event);
   }
 
   handleSubmit = (event) => {
@@ -48,35 +47,33 @@ class VideoCreateForm extends Component {
       video_url: this.state.videoUrl
     };
 
-    if (this.props.match.params.id) {
-      api.patch(`/movies/${this.props.match.params.id}`, data)
-        .then(() => this.props.history.push('/'))
-        .catch(err => console.log(err));
-    } else {
-      api.post('/movies')
-        .then(() => this.props.history.push('/'), data)
-        .catch(err => console.log(err));
+    this.props.onSubmit(data);
+  }
+
+  setStateFromProps() {
+    if (this.props.data) {
+      if (this.props.data.noVideo) {
+        this.setState({ noVideo: true })
+      } else {
+        const { title, description, video_url, thumbnail } = this.props.data;
+        this.setState({
+          title,
+          description,
+          videoUrl: video_url,
+          thumbnail,
+          formTitle: 'Edytuj video',
+          submitButtonValue: 'Zaktualizuj'
+        });
+      }
     }
   }
 
   componentDidMount() {
-    if (this.props.match.params.id) {
-      api.get(`/movies/${this.props.match.params.id}`)
-        .then(data => {
-          this.setState({
-            title: data.title,
-            description: data.description,
-            videoUrl: data.video_url,
-            noVideo: false
-          },this.setState({ thumbnail: this.parser.parseThumb(data.video_url) }));
-        })
-        .catch(err => this.setState({ noVideo: true }));
+    this.setStateFromProps();
+  }
 
-      this.setState({
-        formTitle: "Edytuj video",
-        submitButtonValue: "Zaktualizuj"
-      });
-    }
+  componentDidUpdate() {
+    this.setStateFromProps();
   }
 
   render() {

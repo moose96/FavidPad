@@ -1,36 +1,25 @@
-import React, { Fragment, useState, useEffect } from 'react';
+import React, { Fragment } from 'react';
 
-import VideoList from '../../components/video/VideoList';
+import useOrientation from '../../hooks/useOrientation';
+import VideosContainer from '../../components/video/VideosContainer';
 import '../../styles/iconmoon/style.scss';
 import '../styles.scss';
 
 function Home() {
-  const [listViewType, setListViewType] = useState('carousel');
+  const orientation = useOrientation();
 
-  const handleOrientationChange = () => {
-    if (window.screen.orientation) {
-      if (window.screen.orientation.type.match(/landscape/i)) {
-        setListViewType('carousel');
-      } else if (window.screen.orientation.type.match(/portrait/i)) {
-        setListViewType('listView');
-      }
-    }
+  let listViewType = '';
+  if (orientation === 'landscape') {
+    listViewType = 'carousel';
+  } else if (orientation === 'portrait') {
+    listViewType = 'listView';
   }
-
-  useEffect(() => {
-    window.addEventListener('orientationchange', handleOrientationChange);
-    handleOrientationChange();
-
-    return () => {
-      window.removeEventListener('orientationchange', handleOrientationChange);
-    };
-  }, []);
 
   return(
     <Fragment>
       {/* <div className="home__toolbar">
       </div> */}
-      <VideoList viewType={listViewType} />
+      <VideosContainer viewType={listViewType} />
     </Fragment>
   );
 }

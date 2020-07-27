@@ -5,10 +5,10 @@ import { API_URL } from '../../global';
 import VideoUrlParser from '../../utility/urlparser/';
 import './VideoView.scss';
 import Loading from '../../components/views/Loading';
-import StandardTemplate from '../../templates/VideoView/StandardTemplate'
-import NotFoundTemplate from '../../templates/VideoView/NotFoundTemplate'
+import Standard from './Standard'
+import VideoNotFound from './VideoNotFound'
 
-function VideoView(props) {
+function VideoView() {
   const [video, setVideo] = useState(null);
   const [notFound, setNotFound] = useState(false);
 
@@ -39,7 +39,7 @@ function VideoView(props) {
 
   if (!notFound) {
     if (video) {
-      template = <StandardTemplate video={video} />;
+      template = <Standard video={video} />;
     } else {
       template = (
         <div className="video-view__loading-placeholder">
@@ -48,7 +48,7 @@ function VideoView(props) {
       )
     }
   } else {
-    template = <NotFoundTemplate />
+    template = <VideoNotFound />
   }
 
   return (

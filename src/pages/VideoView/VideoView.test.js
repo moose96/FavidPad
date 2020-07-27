@@ -1,13 +1,17 @@
 import React from 'react';
-import { render } from '@testing-library/react';
+import { shallow } from 'enzyme';
+import { MemoryRouter } from 'react-router-dom';
 
 import VideoView from './VideoView';
-import { MemoryRouter, Switch, Route } from 'react-router-dom';
 
-test('render VideoView while loading data',() => {
-    const { getByText } = render(
-    <MemoryRouter initialEntries={['/video/1']}>
-        <VideoView videos={null} loadingData={true} />
-    </MemoryRouter>
+describe('test VideoView', () => {
+  it('should render VideoView',() => {
+    const { wrapper } = shallow(
+      <MemoryRouter initialEntries={['/video/1']}>
+          <VideoView />
+      </MemoryRouter>
     );
+
+    expect(wrapper.find('.video-view')).toHaveLengthOf(1);
+  });
 });

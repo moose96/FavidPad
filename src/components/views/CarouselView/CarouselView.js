@@ -1,9 +1,11 @@
 import React, { useState, cloneElement, Fragment } from 'react';
+import { connect } from 'react-redux';
 
+import { setCurrentChild } from './redux';
 import './CarouselView.scss';
 
-function CarouselView({ children }) {
-  const [currentChild, setCurrentChild] = useState(0);
+function CarouselView({ children, currentChild, setCurrentChild }) {
+  // const [currentChild, setCurrentChild] = useState(0);
   const [lastTouchXValue, setLastTouchXValue] = useState(0);
 
   const handleVideoClick = (id) => {
@@ -85,4 +87,16 @@ function CarouselView({ children }) {
   );
 }
 
-export default CarouselView;
+const mapStateToProps = state => {
+  return {
+    currentChild: state.videoList.currentChild
+  };
+}
+
+const mapDispatchToProps = dispatch => {
+  return {
+    setCurrentChild: data => dispatch(setCurrentChild(data))
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(CarouselView);

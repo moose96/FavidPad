@@ -50,15 +50,15 @@ function VideoContainer({ className, active, allowClick, style, video, onClick }
   });
 
   const children = [
-    <Loading />,
-    <Video {...video} active={active} onClick={handleClick} onDelete={handleDeleteVideoClick} />,
-    <MessageBox className="delete-video-message-box"
-      type="yes-no"
+    <Loading key={`loading-${video.id}`}/>,
+    <Video key={`video=${video.id}`} {...video} active={active} onClick={handleClick} onDelete={handleDeleteVideoClick} />,
+    <MessageBox.YesNo key={`delete-message-box-${video.id}`}
+      className="delete-video-message-box"
       defaultButton="reset"
       onReject={() => setFrame(1)}
       onSubmit={handleDeleteVideo} >
       Czy na pewno chcesz usunąć to video?
-    </MessageBox>
+    </MessageBox.YesNo>
   ];
 
   return (
