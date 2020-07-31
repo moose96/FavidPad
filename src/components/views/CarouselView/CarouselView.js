@@ -4,13 +4,15 @@ import { connect } from 'react-redux';
 import { setCurrentChild } from './redux';
 import './CarouselView.scss';
 
-function CarouselView({ children, currentChild, setCurrentChild }) {
+function CarouselView({ children, currentChild, setCurrentChild, playSound }) {
   // const [currentChild, setCurrentChild] = useState(0);
   const [lastTouchXValue, setLastTouchXValue] = useState(0);
 
   const handleVideoClick = (id) => {
     let index = children.findIndex((element) => element.props.video.id === id);
     setCurrentChild(index);
+
+    playSound();
   }
 
   const calculateNewVideoIndex = (delta) => {
@@ -23,6 +25,8 @@ function CarouselView({ children, currentChild, setCurrentChild }) {
     } else if (newIndex < 0) {
       setCurrentChild(0);
     }
+
+    playSound();
   }
 
   const handleMouseWheel = (event) => {

@@ -2,11 +2,11 @@
 
 @font-face {
   font-family: '#{$icomoon-font-family}';
-  src:  url('#{$icomoon-font-path}/#{$icomoon-font-family}.eot?8kpgle');
-  src:  url('#{$icomoon-font-path}/#{$icomoon-font-family}.eot?8kpgle#iefix') format('embedded-opentype'),
-    url('#{$icomoon-font-path}/#{$icomoon-font-family}.ttf?8kpgle') format('truetype'),
-    url('#{$icomoon-font-path}/#{$icomoon-font-family}.woff?8kpgle') format('woff'),
-    url('#{$icomoon-font-path}/#{$icomoon-font-family}.svg?8kpgle##{$icomoon-font-family}') format('svg');
+  src:  url('#{$icomoon-font-path}/#{$icomoon-font-family}.eot?3sm1ge');
+  src:  url('#{$icomoon-font-path}/#{$icomoon-font-family}.eot?3sm1ge#iefix') format('embedded-opentype'),
+    url('#{$icomoon-font-path}/#{$icomoon-font-family}.ttf?3sm1ge') format('truetype'),
+    url('#{$icomoon-font-path}/#{$icomoon-font-family}.woff?3sm1ge') format('woff'),
+    url('#{$icomoon-font-path}/#{$icomoon-font-family}.svg?3sm1ge##{$icomoon-font-family}') format('svg');
   font-weight: normal;
   font-style: normal;
   font-display: block;
@@ -27,6 +27,16 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+.icon-volume_off {
+  &:before {
+    content: $icon-volume_off; 
+  }
+}
+.icon-volume_up {
+  &:before {
+    content: $icon-volume_up; 
+  }
+}
 .icon-pencil {
   &:before {
     content: $icon-pencil; 

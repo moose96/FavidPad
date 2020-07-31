@@ -1,10 +1,10 @@
 @font-face {
   font-family: 'icomoon';
-  src:  url('fonts/icomoon.eot?n7lzu0');
-  src:  url('fonts/icomoon.eot?n7lzu0#iefix') format('embedded-opentype'),
-    url('fonts/icomoon.ttf?n7lzu0') format('truetype'),
-    url('fonts/icomoon.woff?n7lzu0') format('woff'),
-    url('fonts/icomoon.svg?n7lzu0#icomoon') format('svg');
+  src:  url('fonts/icomoon.eot?3sm1ge');
+  src:  url('fonts/icomoon.eot?3sm1ge#iefix') format('embedded-opentype'),
+    url('fonts/icomoon.ttf?3sm1ge') format('truetype'),
+    url('fonts/icomoon.woff?3sm1ge') format('woff'),
+    url('fonts/icomoon.svg?3sm1ge#icomoon') format('svg');
   font-weight: normal;
   font-style: normal;
   font-display: block;
@@ -13,7 +13,7 @@
 .icon {
   /* use !important to prevent issues with browser extensions that change fonts */
   font-family: 'icomoon' !important;
-  speak: none;
+  speak: never;
   font-style: normal;
   font-weight: normal;
   font-variant: normal;
@@ -25,11 +25,29 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+.icon-volume_off:before {
+  content: "\e900";
+}
+.icon-volume_up:before {
+  content: "\e901";
+}
 .icon-pencil:before {
   content: "\e905";
 }
 .icon-play:before {
   content: "\e912";
+}
+.icon-spinner9:before {
+  content: "\e982";
+}
+.icon-spinner10:before {
+  content: "\e983";
+}
+.icon-sad:before {
+  content: "\e9e5";
+}
+.icon-sad2:before {
+  content: "\e9e6";
 }
 .icon-plus:before {
   content: "\ea0a";

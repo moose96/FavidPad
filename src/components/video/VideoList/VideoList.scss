@@ -4,4 +4,13 @@
     margin-bottom: 2rem;
     text-align: center;
   }
+
+  &__header-toolbar {
+    display: flex;
+    justify-content: flex-end;
+
+    button {
+      font-size: 1.5rem;
+    }
+  }
 }
