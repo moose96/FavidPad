@@ -3,16 +3,16 @@ import { connect } from 'react-redux';
 
 import { setCurrentChild } from './redux';
 import './CarouselView.scss';
+import SfxPlayer from '../../multimedia/SfxPlayer';
+import click from '../../../sfx/click.wav';
 
-function CarouselView({ children, currentChild, setCurrentChild, playSound }) {
+function CarouselView({ children, currentChild, setCurrentChild }) {
   // const [currentChild, setCurrentChild] = useState(0);
   const [lastTouchXValue, setLastTouchXValue] = useState(0);
 
   const handleVideoClick = (id) => {
     let index = children.findIndex((element) => element.props.video.id === id);
     setCurrentChild(index);
-
-    playSound();
   }
 
   const calculateNewVideoIndex = (delta) => {
@@ -25,8 +25,6 @@ function CarouselView({ children, currentChild, setCurrentChild, playSound }) {
     } else if (newIndex < 0) {
       setCurrentChild(0);
     }
-
-    playSound();
   }
 
   const handleMouseWheel = (event) => {
@@ -76,14 +74,16 @@ function CarouselView({ children, currentChild, setCurrentChild, playSound }) {
 
         return (
           <Fragment>
-            {cloneElement(element, {
-              key: `carousel-view-${element.key}`,
-              active,
-              allowClick,
-              style,
-              className: 'carousel-view__element',
-              onClick: handleVideoClick
-            })}
+            <SfxPlayer src={click} >
+              {cloneElement(element, {
+                key: `carousel-view-${element.key}`,
+                active,
+                allowClick,
+                style,
+                className: 'carousel-view__element',
+                onClick: handleVideoClick
+              })}
+            </SfxPlayer>
           </Fragment>
         )
       })}

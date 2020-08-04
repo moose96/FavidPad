@@ -9,7 +9,7 @@ import './VideoContainer.scss';
 import MessageBox from '../../forms/MessageBox';
 import Loading from '../../views/Loading';
 
-function VideoContainer({ className, active, allowClick, style, video, onClick }) {
+function VideoContainer({ className, active, allowClick, style, video, onClick, playSound }) {
   const [frame, setFrame] = useState(0);
   let history = useHistory();
 
@@ -44,6 +44,10 @@ function VideoContainer({ className, active, allowClick, style, video, onClick }
     }
   }
 
+  const handleMouseEnter = () => {
+    playSound();
+  }
+
   const classes = classnames(className,{
     'video-container': true,
     active
@@ -62,7 +66,7 @@ function VideoContainer({ className, active, allowClick, style, video, onClick }
   ];
 
   return (
-    <div className={classes} style={style}>
+    <div className={classes} style={style} onMouseEnter={handleMouseEnter}>
       {children[frame]}
     </div>
   );

@@ -8,9 +8,9 @@ import CarouselView from '../../views/CarouselView';
 import ListView from '../../views/ListView';
 import Button from '../../forms/Button';
 import ToggleButton from '../../forms/ToggleButton';
-import SfxPlayer from '../../multimedia/SfxPlayer';
-import ding from '../../../sfx/ding.ogg';
+import SfxButton from '../../forms/SfxButton';
 import { toggleSfxPlayer } from '../../multimedia/SfxPlayer/redux';
+import ding from '../../../sfx/ding.ogg';
 
 function VideoList({ viewType, data, limit, onClick, sfxPlayer, toggleSfxPlayer }) {
   // const [videos, setVideos] = useState([{ video_url: '' }]);
@@ -34,11 +34,9 @@ function VideoList({ viewType, data, limit, onClick, sfxPlayer, toggleSfxPlayer 
   if (viewType === 'carousel') {
     view = (
       <Fragment>
-        <SfxPlayer src={ding}>
-          <CarouselView>
-            {children}
-          </CarouselView>
-        </SfxPlayer>
+        <CarouselView>
+          {children}
+        </CarouselView>
       </Fragment>
     );
   } else if(viewType === 'listView') {
@@ -59,9 +57,9 @@ function VideoList({ viewType, data, limit, onClick, sfxPlayer, toggleSfxPlayer 
       </div>
       {view}
       <div className="video-list__toolbar">
-        <Button as="link" type="flat-contrast" linkTo="/video/create">
+        <SfxButton as="link" type="flat-contrast" linkTo="/video/create" onHoverSfx={ding}>
           <span className="icon icon-plus"></span> Dodaj
-        </Button>
+        </SfxButton>
         </div>
     </div>
   );
