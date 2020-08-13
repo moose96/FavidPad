@@ -2,7 +2,9 @@
   &__toolbar {
     margin-top: 1rem;
     margin-bottom: 2rem;
-    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
 
   &__header-toolbar {
@@ -12,5 +14,23 @@
     button {
       font-size: 1.5rem;
     }
+  }
+
+  &__pagination {
+     display: grid;
+     grid-template-columns: 1fr 1fr 1fr;
+     justify-items: center;
+     align-items: center;
+
+     &__element {
+       &--center {
+         grid-column: 2 / 2;
+       }
+
+       &--right {
+         grid-column: 3 / 3;
+         width: 2rem;
+       }
+     }
   }
 }

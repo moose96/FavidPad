@@ -1,4 +1,4 @@
-import React,{ Fragment } from 'react';
+import React, { Fragment, useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
@@ -11,21 +11,30 @@ import ToggleButton from '../../forms/ToggleButton';
 import SfxButton from '../../forms/SfxButton';
 import { toggleSfxPlayer } from '../../multimedia/SfxPlayer/redux';
 import ding from '../../../sfx/ding.ogg';
+import Pagination from '../../views/Pagination/Pagination';
+import PageSize from '../../views/PageSize';
 
-function VideoList({ viewType, data, limit, onClick, sfxPlayer, toggleSfxPlayer }) {
-  // const [videos, setVideos] = useState([{ video_url: '' }]);
+function VideoList({ viewType, data, pagesize, onClick, sfxPlayer, toggleSfxPlayer }) {
+  const [pagination, setPagination] = useState({ current: 0, max: 0 });
 
-  // useEffect(() => {
-  //   api.get('/movies')
-  //     .then(data => setVideos(data));
-  // },[]);
+  useEffect(() => {
+    if (data) {
+      setPagination({
+        ...pagination,
+        max: pagesize && Math.ceil(data.length / pagesize)
+      });
+    }
+  }, [pagesize, data]);
+
+  const handlePageChange = page => {
+    setPagination({
+      ...pagination,
+      current: page
+    });
+  }
 
   let view;
-  let videosToMap = data;
-
-  // if (limit) {
-  //   videosToMap = videos.slice(0, limit);
-  // }
+  let videosToMap = data.slice(pagesize * pagination.current, pagesize * pagination.current + pagesize);
 
   const children = videosToMap.map((element) =>
     <VideoContainer key={element.id} video={element} />
@@ -57,6 +66,11 @@ function VideoList({ viewType, data, limit, onClick, sfxPlayer, toggleSfxPlayer 
       </div>
       {view}
       <div className="video-list__toolbar">
+        <div className="video-list__pagination">
+          <Pagination className="video-list__pagination__element--center"
+            pages={pagination.max} current={pagination.current} onPageChange={handlePageChange} />
+          <PageSize className="video-list__pagination__element--right"/>
+        </div>
         <SfxButton as="link" type="flat-contrast" linkTo="/video/create" onHoverSfx={ding}>
           <span className="icon icon-plus"></span> Dodaj
         </SfxButton>
@@ -67,7 +81,8 @@ function VideoList({ viewType, data, limit, onClick, sfxPlayer, toggleSfxPlayer 
 
 const mapStateToProps = state => {
   return {
-    sfxPlayer: state.sfx.active
+    sfxPlayer: state.sfx.active,
+    pagesize: state.pagesize.pagesize
   }
 }
 

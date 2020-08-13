@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 
 import './Button.scss';
 
-function Button ({ as, className, children, type, Default, linkTo, onClick, onHover }) {
+function Button ({ as, className, children, name, type, Default, linkTo, onClick, onHover }) {
   const classes = classnames(className, {
     'button': true,
     'button--flat': type === 'flat',
@@ -15,9 +15,9 @@ function Button ({ as, className, children, type, Default, linkTo, onClick, onHo
 
   const a = <a className = {classes} href={linkTo} onClick={onClick} onMouseEnter={onHover}>{children}</a>;
   const link = <Link className = {classes} to={linkTo} onClick={onClick} onMouseEnter={onHover}>{children}</Link>
-  const button = <button className = {classes} onClick={onClick} onMouseEnter={onHover}>{children}</button>
-  const submit = <input className = {classes} type="submit" value={children} onMouseEnter={onHover}/>
-  const reset = <input className = {classes} type="reset" value={children} onMouseEnter={onHover} />
+  const button = <button className={classes} name={name} onClick={onClick} onMouseEnter={onHover}>{children}</button>
+  const submit = <input className={classes} type="submit" value={children} onMouseEnter={onHover}/>
+  const reset = <input className={classes} type="reset" value={children} onMouseEnter={onHover} />
 
   if (as === 'a') {
     return a;
