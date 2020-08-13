@@ -1,0 +1,14 @@
+@import '../../../../styles/variables';
+@import '../../../../styles/mixins';
+
+content {
+    padding-top: 3rem;
+    height: 100%;
+}
+
+@include portrait {
+  content {
+    height: auto;
+    min-height: 100%;
+  }
+}

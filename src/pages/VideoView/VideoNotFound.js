@@ -1,9 +1,9 @@
 import React, { Fragment } from 'react';
 
-import NotFound from '../../components/views/NotFound';
+import NotFound from '../../ui/components/view/NotFound';
 // import VideoList from '../../../components/video/VideoList';
-import VideosContainer from '../../components/video/VideosContainer';
-import VideoViewTemplate from '../../templates/VideoView/VideoViewTemplate';
+import VideosContainer from '../../video/containers/VideosContainer';
+import VideoViewTemplate from '../templates/VideoView/VideoViewTemplate';
 
 function VideoNotFound() {
   return (

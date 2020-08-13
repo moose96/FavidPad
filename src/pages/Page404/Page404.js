@@ -1,6 +1,6 @@
 import React from 'react';
 
-import NotFound from '../../components/views/NotFound';
+import NotFound from '../../ui/components/view/NotFound';
 
 function Page404() {
     return (

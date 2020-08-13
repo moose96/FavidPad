@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react';
 
 import useOrientation from '../../hooks/useOrientation';
-import VideosContainer from '../../components/video/VideosContainer';
+import VideosContainer from '../../video/containers/VideosContainer';
 import '../../styles/iconmoon/style.scss';
 import '../styles.scss';
 

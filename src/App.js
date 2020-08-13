@@ -6,14 +6,14 @@ import {
 import classnames from 'classnames';
 import { connect } from 'react-redux';
 
-import Header from './components/template/Header';
-import Content from './components/template/Content';
-import Footer from './components/template/Footer';
+import Header from './ui/components/layout/Header';
+import Content from './ui/components/layout/Content';
+import Footer from './ui/components/layout/Footer';
 import Home from './pages/Home';
 import About from './pages/About';
 import Page404 from './pages/Page404';
 import VideoView from './pages/VideoView';
-import VideoFormContainer from './components/forms/VideoFormContainer';
+import VideoFormContainer from './form/containers/VideoFormContainer';
 import './App.scss';
 
 function App({ customHeight }) {

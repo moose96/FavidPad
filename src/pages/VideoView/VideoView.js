@@ -4,7 +4,7 @@ import { useParams } from 'react-router-dom';
 import { API_URL } from '../../global';
 import VideoUrlParser from '../../utility/urlparser/';
 import './VideoView.scss';
-import Loading from '../../components/views/Loading';
+import Loading from '../../ui/components/view/Loading';
 import Standard from './Standard'
 import VideoNotFound from './VideoNotFound'
 
