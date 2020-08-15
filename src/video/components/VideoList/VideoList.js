@@ -1,4 +1,4 @@
-import React, { Fragment, useState, useEffect } from 'react';
+import React, { Fragment, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
@@ -8,32 +8,26 @@ import CarouselView from '../../../ui/containers/view/CarouselView';
 import ListView from '../../../ui/components/view/ListView';
 import ToggleButton from '../../../ui/components/input/button/ToggleButton';
 import SfxButton from '../../../ui/components/input/button/SfxButton';
-import { toggleSfxPlayer } from '../../../ui/containers/multimedia/SfxPlayer/redux';
 import ding from '../../../assets/sfx/ding.ogg';
 import Pagination from '../../../ui/components/input/Pagination';
-import PageSize from '../../../ui/components/input/PageSize';
+import Number from '../../../ui/components/input/Number';
 
-function VideoList({ viewType, data, pagesize, onClick, sfxPlayer, toggleSfxPlayer }) {
-  const [pagination, setPagination] = useState({ current: 0, max: 0 });
+import { toggleSfxPlayer } from '../../../ui/containers/multimedia/SfxPlayer/actions';
+import { setCurrentPage, setMaxPages, setPageSize } from './actions';
 
+function VideoList({ viewType, data, pagination, setPagination, sfxPlayer, toggleSfxPlayer }) {
   useEffect(() => {
     if (data) {
-      setPagination({
-        ...pagination,
-        max: pagesize && Math.ceil(data.length / pagesize)
-      });
+      setPagination(setMaxPages(pagination.elementsPerPage && Math.ceil(data.length / pagination.elementsPerPage)));
     }
-  }, [pagesize, data]);
+  }, [pagination.elementsPerPage, data]);
 
-  const handlePageChange = page => {
-    setPagination({
-      ...pagination,
-      current: page
-    });
-  }
+  const handlePageChange = page => setPagination(setCurrentPage(page));
+  const handlePagesizeChange = value => setPagination(setPageSize(value));
 
   let view;
-  let videosToMap = data.slice(pagesize * pagination.current, pagesize * pagination.current + pagesize);
+  let videosToMap = data.slice(pagination.elementsPerPage * pagination.currentPage,
+    pagination.elementsPerPage * pagination.currentPage + pagination.elementsPerPage);
 
   const children = videosToMap.map((element) =>
     <VideoContainer key={element.id} video={element} />
@@ -67,8 +61,9 @@ function VideoList({ viewType, data, pagesize, onClick, sfxPlayer, toggleSfxPlay
       <div className="video-list__toolbar">
         <div className="video-list__pagination">
           <Pagination className="video-list__pagination__element--center"
-            pages={pagination.max} current={pagination.current} onPageChange={handlePageChange} />
-          <PageSize className="video-list__pagination__element--right"/>
+            pages={pagination.maxPages} current={pagination.currentPage} onPageChange={handlePageChange} />
+          <Number className="video-list__pagination__element--right"
+            value={pagination.elementsPerPage} onChange={handlePagesizeChange} />
         </div>
         <SfxButton as="link" type="flat-contrast" linkTo="/video/create" onHoverSfx={ding}>
           <span className="icon icon-plus"></span> Dodaj
@@ -80,16 +75,15 @@ function VideoList({ viewType, data, pagesize, onClick, sfxPlayer, toggleSfxPlay
 
 const mapStateToProps = state => {
   return {
-    sfxPlayer: state.sfx.active,
-    pagesize: state.pagesize.pagesize
+    sfxPlayer: state.ui.sfxPlayer.active,
+    pagination: state.ui.pagination
   }
 }
 
-const mapDispatchToProps = dispatch => {
-  return {
-    toggleSfxPlayer: value => dispatch(toggleSfxPlayer(value))
-  }
-}
+const mapDispatchToProps = dispatch => ({
+  toggleSfxPlayer: value => dispatch(toggleSfxPlayer(value)),
+  setPagination: callback => dispatch(callback)
+})
 
 VideoList.propTypes = {
   viewType: PropTypes.string

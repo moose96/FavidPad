@@ -1,4 +1,4 @@
-const TOGGLE_SFX_PLAYER = 'sfxPlayer/toggle';
+export const TOGGLE_SFX_PLAYER = 'sfxPlayer/toggle';
 
 const INITIAL_STATE = {
   active: true

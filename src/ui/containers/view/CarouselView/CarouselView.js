@@ -93,7 +93,7 @@ function CarouselView({ children, currentChild, setCurrentChild }) {
 
 const mapStateToProps = state => {
   return {
-    currentChild: state.videoList.currentChild
+    currentChild: state.ui.carouselView.currentChild
   };
 }
 

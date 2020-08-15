@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import Number from '../Number';
-import { setPagesize } from './redux';
+import { setPagesize } from './actions';
 
 function PageSize({ className, size, setSize }) {
   const handleChange = value => {

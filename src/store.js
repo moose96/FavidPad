@@ -1,13 +1,15 @@
-import { combineReducers } from 'redux';
+import { createStore } from 'redux';
+import { persistStore, persistReducer } from 'redux-persist';
+import storage from 'redux-persist/lib/storage';
 
-import videoListReducer from './ui/containers/view/CarouselView/redux';
-import contentReducer from './ui/components/layout/Content/redux';
-import sfxPlayerReducer from './ui/containers/multimedia/SfxPlayer/redux';
-import pagesizeReducer from './ui/components/input/PageSize/redux';
+import reducer from './reducers';
 
-export default combineReducers({
-  videoList: videoListReducer,
-  content: contentReducer,
-  sfx: sfxPlayerReducer,
-  pagesize: pagesizeReducer
-});
+const persistConfig = {
+  key: 'root',
+  storage,
+  whitelist: ['ui']
+}
+
+const persistedReducer = persistReducer(persistConfig, reducer);
+export const store = createStore(persistedReducer);
+export const persistor = persistStore(store);
