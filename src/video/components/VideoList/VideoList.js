@@ -60,8 +60,9 @@ function VideoList({ viewType, data, pagination, setPagination, sfxPlayer, toggl
       {view}
       <div className="video-list__toolbar">
         <div className="video-list__pagination">
-          <Pagination className="video-list__pagination__element--center"
-            pages={pagination.maxPages} current={pagination.currentPage} onPageChange={handlePageChange} />
+          {pagination.maxPages > 1 && (
+            <Pagination className="video-list__pagination__element--center"
+              pages={pagination.maxPages} current={pagination.currentPage} onPageChange={handlePageChange} /> )}
           <Number className="video-list__pagination__element--right"
             value={pagination.elementsPerPage} onChange={handlePagesizeChange} />
         </div>
@@ -75,8 +76,11 @@ function VideoList({ viewType, data, pagination, setPagination, sfxPlayer, toggl
 
 const mapStateToProps = state => {
   return {
-    sfxPlayer: state.ui.sfxPlayer.active,
-    pagination: state.ui.pagination
+    sfxPlayer: state.uiSettings.sfxPlayer.active,
+    pagination: {
+      ...state.ui.pagination,
+      ...state.uiSettings.pagination
+    }
   }
 }
 

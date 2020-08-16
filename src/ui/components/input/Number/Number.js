@@ -22,8 +22,8 @@ function Number({ className, onChange, value, ...props }) {
   }
 
   return (
-    <div className="number" onMouseEnter={handleEnter} onMouseLeave={handleLeave}>
-      <input className={`number__input ${className}`} type="number" value={value} onChange={handleInputChange} {...props} />
+    <div className={`number ${className}`} onMouseEnter={handleEnter} onMouseLeave={handleLeave}>
+      <input className='number__input' type="number" value={value} onChange={handleInputChange} {...props} />
       <div className="number__buttons">
         <Button name="up" onClick={handleClick}>+</Button>
         <Button name="down" onClick={handleClick}>-</Button>

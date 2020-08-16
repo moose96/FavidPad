@@ -7,7 +7,7 @@ import reducer from './reducers';
 const persistConfig = {
   key: 'root',
   storage,
-  whitelist: ['ui']
+  whitelist: ['uiSettings']
 }
 
 const persistedReducer = persistReducer(persistConfig, reducer);
