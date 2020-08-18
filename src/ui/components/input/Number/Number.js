@@ -22,12 +22,14 @@ function Number({ className, onChange, value, ...props }) {
   }
 
   return (
-    <div className={`number ${className}`} onMouseEnter={handleEnter} onMouseLeave={handleLeave}>
+    <div className={`number ${className}`} onFocus={handleEnter} onBlur={handleLeave}>
       <input className='number__input' type="number" value={value} onChange={handleInputChange} {...props} />
-      <div className="number__buttons">
-        <Button name="up" onClick={handleClick}>+</Button>
-        <Button name="down" onClick={handleClick}>-</Button>
-      </div>
+      {showButtons && (
+        <div className="number__buttons">
+          <Button name="up" onClick={handleClick}>+</Button>
+          <Button name="down" onClick={handleClick}>-</Button>
+        </div>
+      )}
     </div>
   );
 }
