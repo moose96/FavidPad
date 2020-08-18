@@ -7,7 +7,6 @@ import SfxPlayer from '../../multimedia/SfxPlayer';
 import click from '../../../../assets/sfx/click.wav';
 
 function CarouselView({ children, currentChild, setCurrentChild }) {
-  // const [currentChild, setCurrentChild] = useState(0);
   const [lastTouchXValue, setLastTouchXValue] = useState(0);
 
   const handleVideoClick = (id) => {

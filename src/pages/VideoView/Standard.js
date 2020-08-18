@@ -1,7 +1,6 @@
 import React, { Fragment } from 'react';
 
 import Player from '../../video/components/Player';
-// import VideoList from '../../../components/video/VideoList';
 import VideosContainer from '../../video/containers/VideosContainer';
 import VideoViewTemplate from '../templates/VideoView/VideoViewTemplate';
 

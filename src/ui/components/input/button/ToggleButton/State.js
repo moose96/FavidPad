@@ -8,6 +8,4 @@ function State({ type, children }) {
   )
 }
 
-// State.name = 'State';
-
 export default State;

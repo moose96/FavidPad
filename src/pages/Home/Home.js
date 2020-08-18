@@ -17,8 +17,6 @@ function Home() {
 
   return(
     <Fragment>
-      {/* <div className="home__toolbar">
-      </div> */}
       <VideosContainer viewType={listViewType} />
     </Fragment>
   );

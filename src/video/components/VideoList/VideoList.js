@@ -1,6 +1,5 @@
 import React, { Fragment, useEffect } from 'react';
 import PropTypes from 'prop-types';
-// import { connect } from 'react-redux';
 
 import VideoContainer from '../VideoContainer';
 import './VideoList.scss';
@@ -12,19 +11,7 @@ import ding from '../../../assets/sfx/ding.ogg';
 import Pagination from '../../../ui/components/input/Pagination';
 import Number from '../../../ui/components/input/Number';
 
-// import { toggleSfxPlayer } from '../../../ui/containers/multimedia/SfxPlayer/actions';
-// import { setCurrentPage, setMaxPages, setPageSize } from './actions';
-
 function VideoList({ viewType, data, pagination, sfxPlayer, onPageChange, onPageSizeChange,onSfxPlayerToggle }) {
-  // useEffect(() => {
-  //   if (data) {
-  //     setPagination(setMaxPages(pagination.elementsPerPage && Math.ceil(data.length / pagination.elementsPerPage)));
-  //   }
-  // }, [pagination.elementsPerPage, data]);
-
-  // const handlePageChange = page => setPagination(setCurrentPage(page));
-  // const handlePagesizeChange = value => setPagination(setPageSize(value));
-
   let view;
   let videosToMap = data.slice(pagination.elementsPerPage * pagination.currentPage,
     pagination.elementsPerPage * pagination.currentPage + pagination.elementsPerPage);
@@ -74,21 +61,6 @@ function VideoList({ viewType, data, pagination, sfxPlayer, onPageChange, onPage
   );
 }
 
-// const mapStateToProps = state => {
-//   return {
-//     sfxPlayer: state.uiSettings.sfxPlayer.active,
-//     pagination: {
-//       ...state.ui.pagination,
-//       ...state.uiSettings.pagination
-//     }
-//   }
-// }
-
-// const mapDispatchToProps = dispatch => ({
-//   toggleSfxPlayer: value => dispatch(toggleSfxPlayer(value)),
-//   setPagination: callback => dispatch(callback)
-// })
-
 VideoList.propTypes = {
   viewType: PropTypes.string
 }
@@ -97,5 +69,4 @@ VideoList.defaultProps = {
   viewType: 'carousel'
 }
 
-// export default connect(mapStateToProps, mapDispatchToProps)(VideoList);
 export default VideoList;
