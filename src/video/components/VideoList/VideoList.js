@@ -1,6 +1,6 @@
 import React, { Fragment, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
+// import { connect } from 'react-redux';
 
 import VideoContainer from '../VideoContainer';
 import './VideoList.scss';
@@ -12,18 +12,18 @@ import ding from '../../../assets/sfx/ding.ogg';
 import Pagination from '../../../ui/components/input/Pagination';
 import Number from '../../../ui/components/input/Number';
 
-import { toggleSfxPlayer } from '../../../ui/containers/multimedia/SfxPlayer/actions';
-import { setCurrentPage, setMaxPages, setPageSize } from './actions';
+// import { toggleSfxPlayer } from '../../../ui/containers/multimedia/SfxPlayer/actions';
+// import { setCurrentPage, setMaxPages, setPageSize } from './actions';
 
-function VideoList({ viewType, data, pagination, setPagination, sfxPlayer, toggleSfxPlayer }) {
-  useEffect(() => {
-    if (data) {
-      setPagination(setMaxPages(pagination.elementsPerPage && Math.ceil(data.length / pagination.elementsPerPage)));
-    }
-  }, [pagination.elementsPerPage, data]);
+function VideoList({ viewType, data, pagination, sfxPlayer, onPageChange, onPageSizeChange,onSfxPlayerToggle }) {
+  // useEffect(() => {
+  //   if (data) {
+  //     setPagination(setMaxPages(pagination.elementsPerPage && Math.ceil(data.length / pagination.elementsPerPage)));
+  //   }
+  // }, [pagination.elementsPerPage, data]);
 
-  const handlePageChange = page => setPagination(setCurrentPage(page));
-  const handlePagesizeChange = value => setPagination(setPageSize(value));
+  // const handlePageChange = page => setPagination(setCurrentPage(page));
+  // const handlePagesizeChange = value => setPagination(setPageSize(value));
 
   let view;
   let videosToMap = data.slice(pagination.elementsPerPage * pagination.currentPage,
@@ -52,7 +52,7 @@ function VideoList({ viewType, data, pagination, setPagination, sfxPlayer, toggl
   return (
     <div className="video-list">
       <div className="video-list__header-toolbar">
-        <ToggleButton type="flat" value={sfxPlayer} onToggle={toggleSfxPlayer}>
+        <ToggleButton type="flat" value={sfxPlayer} onToggle={() => onSfxPlayerToggle()}>
           <ToggleButton.State type="on"><span className="icon icon-volume_up"></span></ToggleButton.State>
           <ToggleButton.State type="off"><span className="icon icon-volume_off"></span></ToggleButton.State>
         </ToggleButton>
@@ -62,9 +62,9 @@ function VideoList({ viewType, data, pagination, setPagination, sfxPlayer, toggl
         <div className="video-list__pagination">
           {pagination.maxPages > 1 && (
             <Pagination className="video-list__pagination__element--center"
-              pages={pagination.maxPages} current={pagination.currentPage} onPageChange={handlePageChange} /> )}
+              pages={pagination.maxPages} current={pagination.currentPage} onPageChange={page => onPageChange(page)} /> )}
           <Number className="video-list__pagination__element--right"
-            value={pagination.elementsPerPage} onChange={handlePagesizeChange} />
+            value={pagination.elementsPerPage} onChange={value => onPageSizeChange(value)} />
         </div>
         <SfxButton as="link" type="flat-contrast" linkTo="/video/create" onHoverSfx={ding}>
           <span className="icon icon-plus"></span> Dodaj
@@ -74,20 +74,20 @@ function VideoList({ viewType, data, pagination, setPagination, sfxPlayer, toggl
   );
 }
 
-const mapStateToProps = state => {
-  return {
-    sfxPlayer: state.uiSettings.sfxPlayer.active,
-    pagination: {
-      ...state.ui.pagination,
-      ...state.uiSettings.pagination
-    }
-  }
-}
+// const mapStateToProps = state => {
+//   return {
+//     sfxPlayer: state.uiSettings.sfxPlayer.active,
+//     pagination: {
+//       ...state.ui.pagination,
+//       ...state.uiSettings.pagination
+//     }
+//   }
+// }
 
-const mapDispatchToProps = dispatch => ({
-  toggleSfxPlayer: value => dispatch(toggleSfxPlayer(value)),
-  setPagination: callback => dispatch(callback)
-})
+// const mapDispatchToProps = dispatch => ({
+//   toggleSfxPlayer: value => dispatch(toggleSfxPlayer(value)),
+//   setPagination: callback => dispatch(callback)
+// })
 
 VideoList.propTypes = {
   viewType: PropTypes.string
@@ -97,4 +97,5 @@ VideoList.defaultProps = {
   viewType: 'carousel'
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(VideoList);
+// export default connect(mapStateToProps, mapDispatchToProps)(VideoList);
+export default VideoList;
