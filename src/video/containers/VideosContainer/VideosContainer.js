@@ -5,10 +5,10 @@ import { connect } from 'react-redux';
 import api from '../../../api';
 import VideoList from '../../components/VideoList';
 
-import { toggleSfxPlayer } from '../../../ui/containers/multimedia/SfxPlayer/actions';
+// import { toggleSfxPlayer } from '../../../ui/containers/multimedia/SfxPlayer/actions';
 import { setCurrentPage, setMaxPages, setPageSize } from '../../components/VideoList/actions';
 
-function VideosContainer({ viewType, pagination, setPagination, sfxPlayer, toggleSfxPlayer }) {
+function VideosContainer({ viewType, pagination, setPagination/*, sfxPlayer, toggleSfxPlayer*/ }) {
   const [videos, setVideos] = useState([{ video_url: '' }]);
 
   useEffect(() => {
@@ -30,10 +30,10 @@ function VideosContainer({ viewType, pagination, setPagination, sfxPlayer, toggl
       viewType={viewType}
       data={videos}
       pagination={pagination}
-      sfxPlayer={sfxPlayer}
+      //sfxPlayer={sfxPlayer}
       onPageChange={handlePageChange}
-      onPageSizeChange={handlePagesizeChange}
-      onSfxPlayerToggle={() => toggleSfxPlayer()} />
+      onPageSizeChange={handlePagesizeChange} />
+      //onSfxPlayerToggle={() => toggleSfxPlayer()} />
   )
 }
 
@@ -47,7 +47,7 @@ VideosContainer.defaultProps = {
 
 const mapStateToProps = state => {
   return {
-    sfxPlayer: state.uiSettings.sfxPlayer.active,
+    // sfxPlayer: state.uiSettings.sfxPlayer.active,
     pagination: {
       ...state.ui.pagination,
       ...state.uiSettings.pagination
@@ -56,7 +56,7 @@ const mapStateToProps = state => {
 }
 
 const mapDispatchToProps = dispatch => ({
-  toggleSfxPlayer: value => dispatch(toggleSfxPlayer(value)),
+  // toggleSfxPlayer: value => dispatch(toggleSfxPlayer(value)),
   setPagination: callback => dispatch(callback)
 })
 
