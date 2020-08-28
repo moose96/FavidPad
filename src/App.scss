@@ -9,7 +9,7 @@
   color: $text-color;
   background: linear-gradient(-45deg, adjust-color($background-color, $lightness: 10%),
     darken($background-color, 10%));
-  overflow: hidden;
+  // overflow: hidden;
 
   a {
     color: adjust-color($background-color, $hue: 120, $lightness: 30%);

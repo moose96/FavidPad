@@ -9,8 +9,9 @@ import './Content.scss';
 function Content ({ children, customHeight, onCustomHeight }) {
   const videoCreate = useRouteMatch('/video/create');
   const videoView = useRouteMatch('/video/:id');
+  const about = useRouteMatch('/about');
 
-  if (!videoCreate && videoView && videoView.isExact) {
+  if ((!videoCreate && videoView && videoView.isExact) || about) {
     onCustomHeight(true);
   } else {
     onCustomHeight(false);

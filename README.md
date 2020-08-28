@@ -41,12 +41,13 @@ Those pages presents the same form, which allows to add new movie, or update exi
 ## Manual
 
 ### Home page
-Below header there is the carousel view, which shows all movies. You could scroll videos by clicking on the video which you want
+Below header there is the toolbar with controls changing some settings. At this moment there is available only one button with speaker icon. This button toggles the sfx player which allows play sound effects while some browser events are triggered. Below the toolbar there is the carousel view, which shows all movies. You could scroll videos by clicking on the video which you want
 to watch. Then you will able to go to video watching page by clicking centered video again. Also you can scroll movies by
 scroll wheel or by dragging on the screen by your finger.
 Each video in carousel view has two buttons marked by pencil and cross icon. The former one bring you into video edit form, and the
 latter one allows you to delete that movie. When you would like to delete video, first you are supposed to confirm that action.
-Below carousel view there is a button which move you to form which allow add you a new video. At the bottom there are footer with link to my GitHub account, and to about page.
+Below the carousel view there is a second toolbar. Inside it there are pagination controls and number input which controls number of elements on page.
+Below the second toolbar there is a button which move you to form which allow add you a new video. At the bottom there are footer with link to my GitHub account, and to about page.
 
 ### Video view page
 The page is divided into two sections: the left contains player which allows you to watch video and the right contains information
@@ -61,12 +62,13 @@ When you will turn your screen into portrait orientation, the application will l
 will be replaced by list view. That view has the same functionality like the carousel view. On the header there will appear two
 buttons, which allow you to go back and forward through history.
 
+### Sound effect player
+At this moment sound effect player plays sound when user let the mouse enter on video in Carousel View and when the user let the mouse enter on *Add* button.
+
 ## TODO
 Below there is the list which describes how I want to develop my application.
 
 1. Improve the layout, especially in portrait mode.
 2. Add tutorial guide, which will be showing how use that application.
 3. Add possibility to changing colors.
-4. Improve showing the large amount of videos by adding pagination.
-5. Add sounds
-6. Add toolbar above the carousel view, which allows user to choose options written above.
+4. Add internalization
