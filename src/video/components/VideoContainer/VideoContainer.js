@@ -45,7 +45,9 @@ function VideoContainer({ className, active, allowClick, style, video, onClick, 
   }
 
   const handleMouseEnter = () => {
-    playSound();
+    if (playSound) {
+      playSound();
+    }
   }
 
   const classes = classnames(className,{

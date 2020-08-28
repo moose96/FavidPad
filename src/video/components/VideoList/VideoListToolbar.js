@@ -11,8 +11,10 @@ function VideoListToolbar({ pagination, onPageChange, onPageSizeChange }) {
         {pagination.maxPages > 1 && (
           <Pagination className="video-list__pagination__element--center"
             pages={pagination.maxPages} current={pagination.currentPage} onPageChange={page => onPageChange(page)} /> )}
-        <Number className="video-list__pagination__element--right"
-          value={pagination.elementsPerPage} onChange={value => onPageSizeChange(value)} />
+          <div className="video-list__pagination__element--right">
+            {/* <p>Elementy na stronie: </p> */}
+            <Number value={pagination.elementsPerPage} onChange={value => onPageSizeChange(value)} />
+          </div>
       </div>
     </div>
   );

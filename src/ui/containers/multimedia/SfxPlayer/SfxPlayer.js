@@ -48,7 +48,7 @@ function SfxPlayer({ children, src, active }) {
 
 const mapStateToProps = state => {
   return {
-    active: state.ui.sfxPlayer.active
+    active: state.uiSettings.sfxPlayer.active
   }
 }
 

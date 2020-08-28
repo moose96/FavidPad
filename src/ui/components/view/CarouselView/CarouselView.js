@@ -1,9 +1,10 @@
 import React, { useState, cloneElement, Fragment } from 'react';
-import { connect } from 'react-redux';
+// import { connect } from 'react-redux';
 
-import { setCurrentChild } from './redux';
+// import { setCurrentChild } from './redux';
+import withCarouselViewCore from '../../../containers/view/withCarouselViewCore';
 import './CarouselView.scss';
-import SfxPlayer from '../../multimedia/SfxPlayer';
+import SfxPlayer from '../../../containers/multimedia/SfxPlayer';
 import click from '../../../../assets/sfx/click.wav';
 
 function CarouselView({ children, currentChild, setCurrentChild }) {
@@ -90,16 +91,17 @@ function CarouselView({ children, currentChild, setCurrentChild }) {
   );
 }
 
-const mapStateToProps = state => {
-  return {
-    currentChild: state.ui.carouselView.currentChild
-  };
-}
+// const mapStateToProps = state => {
+//   return {
+//     currentChild: state.ui.carouselView.currentChild
+//   };
+// }
 
-const mapDispatchToProps = dispatch => {
-  return {
-    setCurrentChild: data => dispatch(setCurrentChild(data))
-  }
-}
+// const mapDispatchToProps = dispatch => {
+//   return {
+//     setCurrentChild: data => dispatch(setCurrentChild(data))
+//   }
+// }
 
-export default connect(mapStateToProps, mapDispatchToProps)(CarouselView);
+// export default connect(mapStateToProps, mapDispatchToProps)(CarouselView);
+export default withCarouselViewCore(CarouselView);

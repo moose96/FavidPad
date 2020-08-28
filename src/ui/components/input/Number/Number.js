@@ -1,4 +1,5 @@
 import React, { useState, useRef } from 'react';
+import classnames from 'classnames';
 
 import './Number.scss';
 import Button from '../button/Button';
@@ -21,15 +22,18 @@ function Number({ className, onChange, value, ...props }) {
     onChange(event.target.value);
   }
 
+  const classes = classnames({
+    'number__buttons': true,
+    'show': showButtons
+  });
+
   return (
     <div className={`number ${className}`} onFocus={handleEnter} onBlur={handleLeave}>
       <input className='number__input' type="number" value={value} onChange={handleInputChange} {...props} />
-      {showButtons && (
-        <div className="number__buttons">
+        <div className={classes}>
           <Button name="up" onClick={handleClick}>+</Button>
           <Button name="down" onClick={handleClick}>-</Button>
         </div>
-      )}
     </div>
   );
 }

@@ -48,7 +48,7 @@ class VideoUrlParser {
 
     parse = (url) => {
         const res = this._parse(url,'video');
-        
+
         if(!res) {
             return {
                 type: 'video',
@@ -60,7 +60,7 @@ class VideoUrlParser {
 
     parseThumb = (url) => {
         const res = this._parse(url,'thumb');
-        
+
         if(!res)
             return '';
         else

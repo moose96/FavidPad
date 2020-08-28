@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import VideoContainer from '../VideoContainer';
 import './VideoList.scss';
-import CarouselView from '../../../ui/containers/view/CarouselView';
+import CarouselView from '../../../ui/components/view/CarouselView';
 import ListView from '../../../ui/components/view/ListView';
 // import ToggleButton from '../../../ui/components/input/button/ToggleButton';
 // import SfxButton from '../../../ui/components/input/button/SfxButton';
