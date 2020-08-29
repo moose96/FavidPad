@@ -2,7 +2,10 @@
 
 This project is created as a part of React learning at Szkola Reacta. It is a simple video platform, which allows you to play your favorite movies, before saved in local database.
 
-## Instalation
+## Live example
+You can view this app [here](https://favidpad.herokuapp.com/).
+
+## Installation
 
 Requirements:
 1. Node.js (13.8.0 *recommended*) - [https://nodejs.org/en/download/](https://nodejs.org/en/download/)
