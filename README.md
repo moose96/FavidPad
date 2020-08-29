@@ -3,7 +3,7 @@
 This project is created as a part of React learning at Szkola Reacta. It is a simple video platform, which allows you to play your favorite movies, before saved in local database.
 
 ## Live example
-You can view this app [here](https://favidpad.herokuapp.com/).
+You can view this app [here](https://favidpad.netlify.app/).
 
 ## Installation
 

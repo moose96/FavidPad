@@ -17,7 +17,7 @@ function ToggleButton({ className, children, type, value, onToggle}) {
     face = children;
   } else {
     React.Children.forEach(children, child => {
-      if (child.type.name === 'State' &&
+      if (child.type === State &&
         child.props.type === littleMap[value ? 1 : 0]) {
           face = child;
       }

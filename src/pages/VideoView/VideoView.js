@@ -1,7 +1,8 @@
 import React,{ useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 
-import { API_URL } from '../../global';
+// import { API_URL } from '../../global';
+import api from '../../api';
 import VideoUrlParser from '../../utility/urlparser/';
 import './VideoView.scss';
 import Loading from '../../ui/components/view/Loading';
@@ -16,19 +17,14 @@ function VideoView() {
   const { id } = useParams();
 
   useEffect(() => {
-    fetch(`${API_URL}/movies/${id}`)
-    .then(response => {
-      if(response.status === 200) {
-          return response.json();
-      } else {
-          throw Error("not found");
-      }
-    })
+    api.get(`/movies/${id}`)
     .then(data => {
       let _video = {...data};
       _video.video_url = parser.parse(data.video_url);
 
       setVideo(_video);
+       document.title = `${_video.title} - FavidPad`;
+      console.log(document);
     })
     .catch(err => {
       setNotFound(true);

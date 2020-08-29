@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 
 import useOrientation from '../../hooks/useOrientation';
@@ -14,6 +14,8 @@ import { toggleSfxPlayer } from '../../ui/containers/multimedia/SfxPlayer/action
 
 function Home({ sfxPlayer, onSfxPlayerToggle }) {
   const orientation = useOrientation();
+
+  document.title = 'FavidPad';
 
   let listViewType = '';
   if (orientation === 'landscape') {
