@@ -2,5 +2,6 @@ $background-color: hsl(219, 91%, 23%);
 $primary-color: white;
 $border-color: lighten($background-color, 30%);
 $text-color: #ddd;
+$anchor-color: adjust-color($background-color, $hue: 120, $lightness: 30%);
 
 $transition-time: .25s;

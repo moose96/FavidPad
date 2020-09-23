@@ -12,7 +12,7 @@
   // overflow: hidden;
 
   a {
-    color: adjust-color($background-color, $hue: 120, $lightness: 30%);
+    color: $anchor-color;
     text-decoration: none;
 
     &:hover {

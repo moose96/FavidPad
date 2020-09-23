@@ -6,6 +6,7 @@ import './VideoCreateForm.scss';
 import '../../../styles/iconmoon/style.scss';
 import VideoUrlParser from '../../../utility/urlparser';
 import placeholder from '../../../assets/images/019-play.png';
+import { formScheme } from './schemas';
 
 class VideoCreateForm extends PureComponent {
   parser = new VideoUrlParser();
@@ -18,6 +19,7 @@ class VideoCreateForm extends PureComponent {
     thumbnail: placeholder,
     formTitle: 'Dodaj video',
     submitButtonValue: 'Dodaj',
+    error: '',
     rawData: {}
   };
 
@@ -48,7 +50,15 @@ class VideoCreateForm extends PureComponent {
       video_url: this.state.videoUrl
     };
 
-    this.props.onSubmit(data);
+    const { error } = formScheme.validate(data);
+
+    if (!error) {
+      this.props.onSubmit(data);
+    } else {
+      this.setState({
+        error: error.message
+      });
+    }
   }
 
   setStateFromProps() {
@@ -82,7 +92,7 @@ class VideoCreateForm extends PureComponent {
   }
 
   render() {
-    const { title, description, videoUrl, noVideo, thumbnail, formTitle, submitButtonValue } = this.state;
+    const { title, description, videoUrl, noVideo, thumbnail, formTitle, submitButtonValue, error } = this.state;
 
     if (noVideo) {
         return(
@@ -107,6 +117,9 @@ class VideoCreateForm extends PureComponent {
               </div>
               <div className="video-create-form__fluid">
                 <Text multiline name="description" label="Opis" value={description} onChange={this.handleInputChange} required/>
+              </div>
+              <div className="error">
+                <p>{error}</p>
               </div>
               <div className="video-create-form__buttons">
                 <Button as="reset" type="flat-contrast">Anuluj</Button>

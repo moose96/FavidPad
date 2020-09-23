@@ -41,6 +41,13 @@
   textarea {
     height: 5rem;
   }
+
+  .error {
+    p {
+      color: $anchor_color;
+      text-align: center;
+    }
+  }
 }
 
 .form-input {
