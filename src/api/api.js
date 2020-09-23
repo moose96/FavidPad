@@ -4,7 +4,10 @@ export const API_URL = 'https://favidpad-api.herokuapp.com/v1';
 
 function request(url, method = 'GET', data = null) {
   const config = {
-    method: method
+    method: method,
+    headers: {
+      'content-type': 'application/json'
+    }
   };
 
   if (method === 'POST' || method === 'PATCH') {

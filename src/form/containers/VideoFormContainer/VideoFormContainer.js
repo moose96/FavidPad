@@ -17,8 +17,8 @@ function VideoFormContainer() {
         .then(() => history.push('/'))
         .catch(err => console.log(err));
     } else {
-      api.post('/movies')
-        .then(() => history.push('/'), data)
+      api.post('/movies', data)
+        .then(() => history.push('/'))
         .catch(err => console.log(err));
     }
   }

@@ -17,7 +17,8 @@ class VideoCreateForm extends PureComponent {
     noVideo: false,
     thumbnail: placeholder,
     formTitle: 'Dodaj video',
-    submitButtonValue: 'Dodaj'
+    submitButtonValue: 'Dodaj',
+    rawData: {}
   };
 
   handleInputChange = (event) => {
@@ -51,7 +52,11 @@ class VideoCreateForm extends PureComponent {
   }
 
   setStateFromProps() {
-    if (this.props.data) {
+    if (this.props.data && this.props.data !== this.state.rawData) {
+      this.setState({
+        rawData: this.props.data
+      });
+
       if (this.props.data.noVideo) {
         this.setState({ noVideo: true })
       } else {

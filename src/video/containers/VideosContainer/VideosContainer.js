@@ -10,9 +10,13 @@ import { setCurrentPage, setMaxPages, setPageSize } from '../../components/Video
 function VideosContainer({ viewType, pagination, setPagination  }) {
   const [videos, setVideos] = useState([{ video_url: '' }]);
 
-  useEffect(() => {
+  const getMovies = () => {
     api.get('/movies')
       .then(data => setVideos(data));
+  }
+
+  useEffect(() => {
+    getMovies();
   },[]);
 
   useEffect(() => {
@@ -23,6 +27,7 @@ function VideosContainer({ viewType, pagination, setPagination  }) {
 
   const handlePageChange = page => setPagination(setCurrentPage(page));
   const handlePagesizeChange = value => setPagination(setPageSize(value));
+  const handleVideoDelete = () => getMovies();
 
   return (
     <VideoList
@@ -30,7 +35,8 @@ function VideosContainer({ viewType, pagination, setPagination  }) {
       data={videos}
       pagination={pagination}
       onPageChange={handlePageChange}
-      onPageSizeChange={handlePagesizeChange} />
+      onPageSizeChange={handlePagesizeChange}
+      onVideoDelete={handleVideoDelete} />
   )
 }
 

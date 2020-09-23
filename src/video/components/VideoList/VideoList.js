@@ -7,13 +7,13 @@ import CarouselView from '../../../ui/components/view/CarouselView';
 import ListView from '../../../ui/components/view/ListView';
 import VideoListToolbar from './VideoListToolbar';
 
-function VideoList({ viewType, data, pagination, onPageChange, onPageSizeChange }) {
+function VideoList({ viewType, data, pagination, onPageChange, onPageSizeChange, onVideoDelete }) {
   let view;
   let videosToMap = data.slice(pagination.elementsPerPage * pagination.currentPage,
     pagination.elementsPerPage * pagination.currentPage + pagination.elementsPerPage);
 
   const children = videosToMap.map((element) =>
-    <VideoContainer key={element.id} video={element} />
+    <VideoContainer key={element.id} video={element} onDelete={onVideoDelete}/>
   );
 
   if (viewType === 'carousel') {

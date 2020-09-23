@@ -8,7 +8,7 @@ function withCarouselViewCore(WrappedComponent) {
     render() {
       return(
         <WrappedComponent {...this.props} />
-      )
+      );
     }
   }
 

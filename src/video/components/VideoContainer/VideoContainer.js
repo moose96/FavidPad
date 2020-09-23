@@ -9,7 +9,7 @@ import './VideoContainer.scss';
 import MessageBox from '../../../form/components/MessageBox';
 import Loading from '../../../ui/components/view/Loading';
 
-function VideoContainer({ className, active, allowClick, style, video, onClick, playSound }) {
+function VideoContainer({ className, active, allowClick, style, video, onClick, playSound, onDelete }) {
   const [frame, setFrame] = useState(0);
   let history = useHistory();
 
@@ -33,7 +33,7 @@ function VideoContainer({ className, active, allowClick, style, video, onClick, 
     event.preventDefault();
 
     api.delete(`/movies/${video.id}`)
-      .then(() => history.push('/'))
+      .then(() => onDelete())
       .catch(err => console.log(err));
   }
 
